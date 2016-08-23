@@ -53,11 +53,13 @@
                 },
                 {
                     "sigla_estado":"",
-                    "nome_cidade":""
+                    "nome_cidade":"",
+                    "escolas":[]
                 },
                 {
                     "sigla_estado":"",
-                    "nome_cidade":""
+                    "nome_cidade":"",
+                    "escolas":[]
                 }
             ]
         },

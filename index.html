@@ -7,6 +7,20 @@
         <link rel="stylesheet" href="assets/css/mdl/material.min.css">
         <script src="assets/css/mdl/material.min.js"></script>
         <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+        <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBsovD4VX9JMoocQYY_pRQ5FsTx2I4B8Q0",
+            authDomain: "encontre-uma-van-de0b6.firebaseapp.com",
+            databaseURL: "https://encontre-uma-van-de0b6.firebaseio.com",
+            storageBucket: "encontre-uma-van-de0b6.appspot.com",
+        };
+        firebase.initializeApp(config);
+        </script>
+    
     </head>  
     <body>
         <header>
@@ -22,6 +36,8 @@
                     
                     <label>Senha:</label>
                     <input type="password" id="senhaLogin">
+
+                    <button id="buttonLogin">Entrar</button>
                 </form>
             </div>
         </header>
