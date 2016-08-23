@@ -1,0 +1,99 @@
+{
+    "estados":
+    {
+        "sigla":"",
+        "nome":"",
+        "cidades":
+        [
+            {//Cidade 1
+                "nome":"",
+                "empresas": /* São cadastradas as empresas que passam nesta cidade para pegar passageiros */
+                [
+                    "id1", //Id da empresa 1
+                    "id2", //Id da empresa 2
+                    "id3"
+                ]
+            },
+            {//Cidade 2
+                "nome":"",
+                "empresas":
+                [
+                    "id3",
+                    "id2",
+                    "id4"
+                ]
+            },
+            {/* outra cidade */},
+            {/* outra cidade */}              
+        ]    
+    },
+    
+    "Empresas":
+    [
+        {
+            "id":"",
+            "nome":"",
+            "email":"",
+            "senha":"",
+            "facebook":"",
+            "celular":"",
+            "mensalidade":"",
+            "sobre":"",
+            "cidades": /* São cadastradas aqui as cidades que são destino da empresa */
+            [
+                {
+                    "sigla_estado":"",
+                    "nome_cidade":"",
+                    "escolas": // Nome de cada escola que a empresa tem como destino.
+                    [
+                        "escola 1",
+                        "escola 2",
+                        "escola 3"
+                    ]
+                },
+                {
+                    "sigla_estado":"",
+                    "nome_cidade":""
+                },
+                {
+                    "sigla_estado":"",
+                    "nome_cidade":""
+                }
+            ]
+        },
+        {
+            "id":"",
+            "nome":"",
+            "email":"",
+            "senha":"",
+            "facebook":"",
+            "celular":"",
+            "mensalidade":"",
+            "sobre":"",
+            "cidades": /* São cadastradas aqui as cidades que são destino da empresa */
+            [
+                {
+                    "sigla_estado":"",
+                    "nome_cidade":"",
+                    "escolas": // Nome de cada escola que a empresa tem como destino.
+                    [
+                        "escola 3",
+                        "escola 4",
+                        "escola 5"
+                        // ...
+                    ]
+                },
+                {
+                    "sigla_estado":"",
+                    "nome_cidade":""
+                },
+                {
+                    "sigla_estado":"",
+                    "nome_cidade":""
+                },
+                { /* mias escolas */}
+            ]
+        },
+        { /* mais empresas */ }
+    ]
+}
