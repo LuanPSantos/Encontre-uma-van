@@ -6,5 +6,68 @@
         <link rel="icon" href="assets/imagens/logo_100.png">
     </head>  
     <body>
+        <header>
+            <h4>Encontre uma van</h4>
+            <nav>
+                <button>Entrar</button>
+                <a href="cadastro.html">Cadastrar</a>
+            </nav>
+            <div id="divLogin">
+                <form id="formLogin">
+                    <label>E-mail:</label>
+                    <input type="email" id="emailLogin">
+                    
+                    <label>Senha:</label>
+                    <input type="password" id="senhaLogin">
+
+                    <button id="buttonLogin">Entrar</button>
+                </form>
+            </div>
+        </header>
+        <main>
+            <h1>Cadastre seus percursos!</h1>
+            <section>
+                
+                <form id="formCadastrarPercursos">
+                    <section>
+                        <h5>Em quais cidades você passa para pegar passageiros?</h5>
+                        <select class="selectEstadosPartida">
+                            <option></option>
+                        </select>
+                        
+                        <select class="selectCidadesPartida">
+                            <option></option>
+                        </select>
+                        <button>+</button>
+                    </section>
+                    
+                    <section>
+                        <h5>Em quais cidades você passa para deixar passageiros?</h5>
+                        <select class="selectEstadosChegada">
+                            <option></option>
+                        </select>
+                        
+                        <select class="selectCidadesChegada">
+                            <option></option>
+                        </select>
+                        <select class="selectEscolasDestino">
+                            <option></option>
+                        </select>
+                        <button>+</button>
+                        <button>+ Cidade</button>
+                    </section>
+                    <div>
+                        <button id="buttonCadastroEmpresa">Pronto</button> 
+                    </div> 
+                </form>
+            </section>
+        </main>
+        <footer>
+            <section>
+                <i></i>
+                <i></i>
+                <p>Desenvolvido por EZ Solutions</p>
+            </section>
+        </footer>
     </body>  
 </html>

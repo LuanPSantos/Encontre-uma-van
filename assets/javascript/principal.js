@@ -30,7 +30,7 @@ var estadosChegada = document.getElementsByClassName("selectEstadosChegada");
 var cidadesChegada = document.getElementsByClassName("selectCidadesChegada");
 var escolasDestino = document.getElementsByClassName("selectEscolasDestino");
 
-// Funções para LOGAR
+// Funções para LOGAR ===========================================================================
 function logar(emailLogin, senhaLogin){
     firebase.auth().signInWithEmailAndPassword(emailLogin, senhaLogin).catch(function(error) {
     // Handle Errors here.
@@ -41,12 +41,13 @@ function logar(emailLogin, senhaLogin){
 }
 
 formLogin.onsubmit = function(e){
-    e.preventDefault
+    e.preventDefault();
 
     logar(emailLogin, senhaLogin);
 };
+// ==============================================================================================
 
-// Funções para CADASTRAR
+// Funções para CADASTRAR =======================================================================
 function cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 
                     telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa){
     
@@ -99,6 +100,8 @@ function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChe
     }
 
     for(var i = 0; i < escolasDestino.length; i++){
-        //Implementar adição das cidades com suas escolas destinos
+        //Implementar adição das cidades com suas escolas destinos para cada empresa
     }
 }
+
+//============================================================================================
