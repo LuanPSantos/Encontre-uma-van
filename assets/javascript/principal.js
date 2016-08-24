@@ -86,38 +86,56 @@ function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, senhaEmpresa, facebook
     return firebase.database().ref('/empresas/' + idEmpresa).update(dadosEmpresa);
 }
 
-formCadastrar.onsubmit = function(e){
+if(formCadastrar != null){
+    formCadastrar.onsubmit = function(e){
 
-    //cadastrar
-    var nomeEmpresa = document.getElementById("inputNomeEmpresa").value;
-    var emailEmpresa = document.getElementById("inputEmailEmpresa").value;
-    var senhaEmpresa = document.getElementById("inputSenhaEmpresa").value;
-    var facebookEmpresa = document.getElementById("inputFacebookEmpresa").value;
-    var telefoneEmpresa = document.getElementById("inputTelefoneEmpresa").value;
-    var celularEmpresa = document.getElementById("inputCelularEmpresa").value;
-    var mensalidadeEmpresa = document.getElementById("inputMensalidadeEmpresa").value;
-    var sobreEmpresa = document.getElementById("textareaSobreEmpresa").value;
+        //cadastrar
+        var nomeEmpresa = document.getElementById("inputNomeEmpresa").value;
+        var emailEmpresa = document.getElementById("inputEmailEmpresa").value;
+        var senhaEmpresa = document.getElementById("inputSenhaEmpresa").value;
+        var facebookEmpresa = document.getElementById("inputFacebookEmpresa").value;
+        var telefoneEmpresa = document.getElementById("inputTelefoneEmpresa").value;
+        var celularEmpresa = document.getElementById("inputCelularEmpresa").value;
+        var mensalidadeEmpresa = document.getElementById("inputMensalidadeEmpresa").value;
+        var sobreEmpresa = document.getElementById("textareaSobreEmpresa").value;
 
-    e.preventDefault();
+        e.preventDefault();
 
-    cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 
-                telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
+        cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 
+                    telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
+    }
 }
 
 //Cadastrar PERCURSOS
 function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestino){
-    var idEmpresa = firebase.auth().currentUser.uid;
 
+    var empresa = [idEmpresa];
+    // Falta recuperar os dados ja existente no caminho para quando usar o set nao apaga-los, mas regrava-los
     for(var i = 0; i < estadosPartida.length; i++){
-        for(var j = 0; i < cidadesPartida.length; j++){
-            
-            //SP/Artur Nogueira['empresa 1'] -- com esse codigo eu adiciono essa empresa na cidade? acho que nao.
-            firebase.database().ref('/' + estadosPartida[i] + '/' + cidadesPartida[j]).update(uid);            
-        }
+        //Adiciona o id da empresa em cada estado-cidade que ela tem como ponto de partida
+        firebase.database().ref('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]).set(empresa);
     }
 
+    var escolas = escolasDestino;
     for(var i = 0; i < escolasDestino.length; i++){
-        //Implementar adição das cidades com suas escolas destinos para cada empresa
+        //Verificar quais escolas sao de quais cidades (talvez matriz)
+        firebase.database().ref('/empresas/' + idEmpresa + '/cidades/'+ cidadesChegada[i] + '/escolas/').set(escolas);
+    }
+}
+
+if(formCadastrarPercursos != null){
+    formCadastrarPercursos.onsubmit = function(e){
+
+        var idEmpresa = firebase.auth().currentUser.uid;
+        var estadosPartida = ["São Paulo", "São Paulo"];
+        var cidadesPartida = ["Artur Nogueira", "Cosmópolis"];
+        var estadosChegada = ["São Paulo", "São Paulo"];
+        var cidadesChegada = ["Limeira", "Paulínia"];
+        var escolasDestino = ["Procotil", "Cotil", "Trajano"];
+
+        e.preventDefault();
+
+        cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestino);
     }
 }
 
