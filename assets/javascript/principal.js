@@ -1,7 +1,7 @@
 //Login
 var formLogin = document.getElementById("formLogin");
-var emailLogin = document.getElementById("emailLogin");
-var senhaLogin = document.getElementById("senhaLogin");
+// var emailLogin = document.getElementById("emailLogin");
+// var senhaLogin = document.getElementById("senhaLogin");
 var botaoLogin = document.getElementById("buttonLogin");
 
 //Busca
@@ -12,16 +12,16 @@ var nomeEscola = document.getElementById("inputEscola");
 var estadoChegada = document.getElementById("selectCidadeChegada");
 var cidadeChegada = document.getElementById("selectCidadeChegada");
 
-//cadastrar
+// //cadastrar
 var formCadastrar = document.getElementById("formCadastrar");
-var nomeEmpresa = document.getElementById("inputNomeEmpresa");
-var emailEmpresa = document.getElementById("inputEmailEmpresa");
-var senhaEmpresa = document.getElementById("inputSenhaEmpresa");
-var facebookEmpresa = document.getElementById("inputFacebookEmpresa");
-var telefoneEmpresa = document.getElementById("inputTelefoneEmpresa");
-var celularEmpresa = document.getElementById("inputCelularEmpresa");
-var mensalidadeEmpresa = document.getElementById("inputMensalidadeEmpresa");
-var sobreEmpresa = document.getElementById("inputSobreEmpresa");
+// var nomeEmpresa = document.getElementById("inputNomeEmpresa");
+// var emailEmpresa = document.getElementById("inputEmailEmpresa");
+// var senhaEmpresa = document.getElementById("inputSenhaEmpresa");
+// var facebookEmpresa = document.getElementById("inputFacebookEmpresa");
+// var telefoneEmpresa = document.getElementById("inputTelefoneEmpresa");
+// var celularEmpresa = document.getElementById("inputCelularEmpresa");
+// var mensalidadeEmpresa = document.getElementById("inputMensalidadeEmpresa");
+// var sobreEmpresa = document.getElementById("textareaSobreEmpresa");
 //Cadastrar PERCURSOS
 var formCadastrarPercursos = document.getElementById("formCadastrarPercursos");
 var estadosPartida = document.getElementsByClassName("selectEstadosPartida");
@@ -33,14 +33,18 @@ var escolasDestino = document.getElementsByClassName("selectEscolasDestino");
 // Funções para LOGAR ===========================================================================
 function logar(emailLogin, senhaLogin){
     firebase.auth().signInWithEmailAndPassword(emailLogin, senhaLogin).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ...
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+        alert("ERRO-login: " + errorMessage);
     });
 }
 
 formLogin.onsubmit = function(e){
+
+    var emailLogin = document.getElementById("emailLogin").value;
+    var senhaLogin = document.getElementById("senhaLogin").value;
     e.preventDefault();
 
     logar(emailLogin, senhaLogin);
@@ -50,20 +54,26 @@ formLogin.onsubmit = function(e){
 // Funções para CADASTRAR =======================================================================
 function cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 
                     telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa){
-    
+
     firebase.auth().createUserWithEmailAndPassword(emailEmpresa, senhaEmpresa).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
-    });
+        alert("ERRO-cadastrar: " + errorMessage);
+    }).then(function (){
+        logar(emailEmpresa, senhaEmpresa);
 
-    logar(emailLogin, senhaLogin);
+        atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
+    });    
+}
 
+function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 
+                    telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa){
+    
     var idEmpresa = firebase.auth().currentUser.uid;
-    //var novaChave = firebase.database().ref('/empresas').push().key;
 
-    var dadosEmpresa = {
+    var dadosEmpresa = {        
         nome : nomeEmpresa,
         email : emailEmpresa,
         senha : senhaEmpresa,
@@ -71,16 +81,23 @@ function cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa,
         telefone : telefoneEmpresa,
         celular : celularEmpresa,
         mensalidade : mensalidadeEmpresa,
-        sobre : sobreEmpresa
+        sobre : sobreEmpresa    
     };
-
-    var atualizacoes = {};
-
-    atualizacoes['/empresas/' + idEmpresa] = dadosEmpresa;
-    return firebase.database().ref().update(dadosEmpresa);
+    return firebase.database().ref('/empresas/' + idEmpresa).update(dadosEmpresa);
 }
 
 formCadastrar.onsubmit = function(e){
+
+    //cadastrar
+    var nomeEmpresa = document.getElementById("inputNomeEmpresa").value;
+    var emailEmpresa = document.getElementById("inputEmailEmpresa").value;
+    var senhaEmpresa = document.getElementById("inputSenhaEmpresa").value;
+    var facebookEmpresa = document.getElementById("inputFacebookEmpresa").value;
+    var telefoneEmpresa = document.getElementById("inputTelefoneEmpresa").value;
+    var celularEmpresa = document.getElementById("inputCelularEmpresa").value;
+    var mensalidadeEmpresa = document.getElementById("inputMensalidadeEmpresa").value;
+    var sobreEmpresa = document.getElementById("textareaSobreEmpresa").value;
+
     e.preventDefault();
 
     cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 

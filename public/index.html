@@ -1,0 +1,94 @@
+﻿<!doctype html>
+<html lang ='pt-BR'>
+    <head>
+        <meta charset="UTF-8">
+        <title>Encontre uma van</title>
+        <link rel="icon" href="../assets/imagens/logo_100.png">
+        <link rel="stylesheet" href="../assets/css/mdl/material.min.css">
+        <script src="../assets/css/mdl/material.min.js"></script>
+        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+        <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBsovD4VX9JMoocQYY_pRQ5FsTx2I4B8Q0",
+            authDomain: "encontre-uma-van-de0b6.firebaseapp.com",
+            databaseURL: "https://encontre-uma-van-de0b6.firebaseio.com",
+            storageBucket: "encontre-uma-van-de0b6.appspot.com",
+        };
+        firebase.initializeApp(config);
+        </script>
+    
+    </head>  
+    <body>
+        <header>
+            <h4>Encontre uma van</h4>
+            <nav>
+                <button>Entrar</button>
+                <a href="cadastro.html">Cadastrar</a>
+            </nav>
+            <div id="divLogin">
+                <form id="formLogin">
+                    <label>E-mail:</label>
+                    <input type="email" id="emailLogin">
+                    
+                    <label>Senha:</label>
+                    <input type="password" id="senhaLogin">
+
+                    <button id="buttonLogin">Entrar</button>
+                </form>
+            </div>
+        </header>
+        <main>
+            <h1>Encontre Uma Van</h1>
+            <h2>De onde você quer sair, para onde você quer chegar.</h2>
+            <section>
+                <form id="formBusca">
+                    <select id="selectEstadoPartida">
+                        <option>Estado</option>
+                    </select>
+                    <select id="selectCidadePartida">
+                        <option>Cidade de partida</option>
+			            <option>Cidade de partida</option>
+                    </select>
+                    <input type="text" id="inputEscola">
+                    <select id="selectEstadoChegada">
+                        <option>Estado</option>
+                    </select>
+                    <select id="selectCidadeChegada">
+                        <option>Cidade de chegada</option>
+                    </select>
+                    
+                    <button id="buttonBuscar">Buscar</button>
+                </form>
+            </section>
+            <div id="divPropaganda">
+                <img src="#" id="imgPropaganda">
+            </div>
+            <section>
+                <h3 id="h3Resultados">Resultados</h3> 
+                <article class="articleEmpresa">
+                    <h4 class="h4Empresas">Empresa</h4>
+                    <div class="divDadosEmpresas">
+                        <p class="pSobreEmpresa">Texto empresa</p>
+                        <p class="pMensalidade">R$250,00 </p>
+                        <p> por mês </p>
+                        <p class="pTelefoneEmpresa"> (00) 99999999 </p> <i> </i>
+                        <p class="pCelularEmpresa"> (00) 99999999 </p> <i> </i>
+                        <p class="pFacebookEmpresa"> (00) 99999999 </p> <i> </i>
+                        <p class="pEmailEmpresa"> exemplo@exemplo.com </p> <i> </i>                        
+                    </div>    
+                </article>   
+            </section>
+        </main>
+        <footer>
+            <section>
+                <i></i>
+                <i></i>
+                <p>Desenvolvido por EZ Solutions</p>
+            </section>
+        </footer>
+    </body>  
+</html>
