@@ -17,23 +17,27 @@ $(document).ready(function (){
         $(this).before(html);      
     });
 
+    // Remover Estado-cidade da sessão de partida
+    $("#sectionConteinerChegada").on("click",".buttonRemoverConteinerEstadoCidadePartida", function(){
+        $(this).parent().remove();
+    });
+
     // ADD nova escola na sessão de chegada
-    $(".buttonAdicionarEscolaDestino").on("click", function(){
+    $("#sectionConteinerPartida").on("click",".buttonAdicionarEscolaDestino", function(){
         var html = 
         '<div class="divConteinerEscolaDestino">'+
             '<select class="selectEscolasDestino">'+
                 '<option>Escola</option>'+
             '</select>'+
             '<button class="buttonRemoverEscolaDestino">-</button>'+
-        '</div>';
+        '</div>'
 
         $(this).before(html);
     });
 
-    $(".buttonRemoverEscolaDestino").on("click", function(){
-        // Acho que nao funciona porque os intem desse seletor sao adicionados uma vez, quando a pagina carrega
-        // e por isso os novos adicionados sao funcionam, por que eles sao estao no seletor.
-        alert("oi");
+    // Remover escola
+    $("#sectionConteinerPartida").on("click",".buttonRemoverEscolaDestino", function(){
+        $(this).parent().remove();
     });
 
     // ADD novo estado-cidade-escola na sessão de chegada
@@ -54,5 +58,10 @@ $(document).ready(function (){
         '</div>';
 
         $(this).before(html);
+    });
+
+    // Remover estado-cidade-escola
+    $("#sectionConteinerPartida").on("click",".buttonRemoverEstadoCidadeChegada", function(){
+        $(this).parent().remove();
     });
 });
