@@ -20,6 +20,8 @@
             };
             firebase.initializeApp(config);
         </script>
+        <script src="../assets/javascript/jquery.js"></script>
+        <script src="../assets/javascript/automatizacao.js"></script>
     </head>  
     <body>
         <header>
@@ -44,33 +46,32 @@
             <h1>Cadastre seus percursos!</h1>
             <section>
                 
-                <form id="formCadastrarPercursos">
+                <form id="formCadastrarPercursos" onsubmit="return false;">
                     <section>
                         <h5>Em quais cidades você passa para pegar passageiros?</h5>
                         <select class="selectEstadosPartida">
-                            <option></option>
+                            <option>Estado</option>
                         </select>
                         
                         <select class="selectCidadesPartida">
-                            <option></option>
+                            <option>Cidade</option>
                         </select>
-                        <button>+</button>
+                        <button id="buttonAdicionarCidadePartida">+</button>
                     </section>
                     
                     <section>
                         <h5>Em quais cidades você passa para deixar passageiros?</h5>
                         <select class="selectEstadosChegada">
-                            <option></option>
-                        </select>
-                        
+                            <option>Estado</option>
+                        </select>                        
                         <select class="selectCidadesChegada">
-                            <option></option>
+                            <option>Cidade</option>
                         </select>
                         <select class="selectEscolasDestino">
-                            <option></option>
+                            <option>Escola</option>
                         </select>
-                        <button>+</button>
-                        <button>+ Cidade</button>
+                        <button class="buttonAdicionarEscolaDestino">+</button>
+                        <button id="buttonAdicionarEstadoCidadeChegada">+ Cidade</button>
                     </section>
                     <div>
                         <button id="buttonCadastroPercursosEmpresa">Pronto</button> 
@@ -87,4 +88,5 @@
         </footer>
     </body>  
     <script src="../assets/javascript/principal.js"></script>
+    
 </html>

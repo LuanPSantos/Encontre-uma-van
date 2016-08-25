@@ -1,7 +1,5 @@
 //Login
 var formLogin = document.getElementById("formLogin");
-// var emailLogin = document.getElementById("emailLogin");
-// var senhaLogin = document.getElementById("senhaLogin");
 var botaoLogin = document.getElementById("buttonLogin");
 
 //Busca
@@ -11,17 +9,12 @@ var cidadePartida = document.getElementById("selectCidadePartida");
 var nomeEscola = document.getElementById("inputEscola");
 var estadoChegada = document.getElementById("selectCidadeChegada");
 var cidadeChegada = document.getElementById("selectCidadeChegada");
+var botaoBuscar = document.getElementById("buttonBuscar");
 
 // //cadastrar
 var formCadastrar = document.getElementById("formCadastrar");
-// var nomeEmpresa = document.getElementById("inputNomeEmpresa");
-// var emailEmpresa = document.getElementById("inputEmailEmpresa");
-// var senhaEmpresa = document.getElementById("inputSenhaEmpresa");
-// var facebookEmpresa = document.getElementById("inputFacebookEmpresa");
-// var telefoneEmpresa = document.getElementById("inputTelefoneEmpresa");
-// var celularEmpresa = document.getElementById("inputCelularEmpresa");
-// var mensalidadeEmpresa = document.getElementById("inputMensalidadeEmpresa");
-// var sobreEmpresa = document.getElementById("textareaSobreEmpresa");
+var botaoCadastrar = document.getElementById("buttonCadastrarEmpresa");
+
 //Cadastrar PERCURSOS
 var formCadastrarPercursos = document.getElementById("formCadastrarPercursos");
 var estadosPartida = document.getElementsByClassName("selectEstadosPartida");
@@ -29,6 +22,7 @@ var cidadesPartida = document.getElementsByClassName("selectCidadesPartida");
 var estadosChegada = document.getElementsByClassName("selectEstadosChegada");
 var cidadesChegada = document.getElementsByClassName("selectCidadesChegada");
 var escolasDestino = document.getElementsByClassName("selectEscolasDestino");
+var botaoCadastrarPercursoEmpresa = document.getElementById("buttonCadastrarPercursosEmpresa");
 
 // Funções para LOGAR ===========================================================================
 function logar(emailLogin, senhaLogin){
@@ -41,14 +35,21 @@ function logar(emailLogin, senhaLogin){
     });
 }
 
-formLogin.onsubmit = function(e){
+if(botaoLogin != null){
+    botaoLogin.onclick = function (event){
+        event.preventDefault();
+        if(formLogin != null){
+            formLogin.onsubmit = function(e){
 
-    var emailLogin = document.getElementById("emailLogin").value;
-    var senhaLogin = document.getElementById("senhaLogin").value;
-    e.preventDefault();
+                var emailLogin = document.getElementById("emailLogin").value;
+                var senhaLogin = document.getElementById("senhaLogin").value;
+                e.preventDefault();
 
-    logar(emailLogin, senhaLogin);
-};
+                logar(emailLogin, senhaLogin);
+            };
+        }
+    }
+}
 // ==============================================================================================
 
 // Funções para CADASTRAR =======================================================================
@@ -86,23 +87,28 @@ function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, senhaEmpresa, facebook
     return firebase.database().ref('/empresas/' + idEmpresa).update(dadosEmpresa);
 }
 
-if(formCadastrar != null){
-    formCadastrar.onsubmit = function(e){
+if(botaoCadastrar != null){
+    botaoCadastrar.onclick = function (event){
+        event.preventDefault();
+        if(formCadastrar != null){
+            formCadastrar.onsubmit = function(e){
 
-        //cadastrar
-        var nomeEmpresa = document.getElementById("inputNomeEmpresa").value;
-        var emailEmpresa = document.getElementById("inputEmailEmpresa").value;
-        var senhaEmpresa = document.getElementById("inputSenhaEmpresa").value;
-        var facebookEmpresa = document.getElementById("inputFacebookEmpresa").value;
-        var telefoneEmpresa = document.getElementById("inputTelefoneEmpresa").value;
-        var celularEmpresa = document.getElementById("inputCelularEmpresa").value;
-        var mensalidadeEmpresa = document.getElementById("inputMensalidadeEmpresa").value;
-        var sobreEmpresa = document.getElementById("textareaSobreEmpresa").value;
+                //cadastrar
+                var nomeEmpresa = document.getElementById("inputNomeEmpresa").value;
+                var emailEmpresa = document.getElementById("inputEmailEmpresa").value;
+                var senhaEmpresa = document.getElementById("inputSenhaEmpresa").value;
+                var facebookEmpresa = document.getElementById("inputFacebookEmpresa").value;
+                var telefoneEmpresa = document.getElementById("inputTelefoneEmpresa").value;
+                var celularEmpresa = document.getElementById("inputCelularEmpresa").value;
+                var mensalidadeEmpresa = document.getElementById("inputMensalidadeEmpresa").value;
+                var sobreEmpresa = document.getElementById("textareaSobreEmpresa").value;
 
-        e.preventDefault();
+                e.preventDefault();
 
-        cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 
-                    telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
+                cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 
+                            telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
+            }
+        }
     }
 }
 
@@ -122,21 +128,26 @@ function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChe
         firebase.database().ref('/empresas/' + idEmpresa + '/cidades/'+ cidadesChegada[i] + '/escolas/').set(escolas);
     }
 }
+if(botaoCadastrarPercursoEmpresa != null){
+    botaoCadastrarPercursoEmpresa.onclick = function(event){
+        event.preventDefault();
+            if(formCadastrarPercursos != null){
+            formCadastrarPercursos.onsubmit = function(e){
 
-if(formCadastrarPercursos != null){
-    formCadastrarPercursos.onsubmit = function(e){
+                var idEmpresa = firebase.auth().currentUser.uid;
+                var estadosPartida = ["São Paulo", "São Paulo"];
+                var cidadesPartida = ["Artur Nogueira", "Cosmópolis"];
+                var estadosChegada = ["São Paulo", "São Paulo"];
+                var cidadesChegada = ["Limeira", "Paulínia"];
+                var escolasDestino = ["Procotil", "Cotil", "Trajano"];
 
-        var idEmpresa = firebase.auth().currentUser.uid;
-        var estadosPartida = ["São Paulo", "São Paulo"];
-        var cidadesPartida = ["Artur Nogueira", "Cosmópolis"];
-        var estadosChegada = ["São Paulo", "São Paulo"];
-        var cidadesChegada = ["Limeira", "Paulínia"];
-        var escolasDestino = ["Procotil", "Cotil", "Trajano"];
+                e.preventDefault();
 
-        e.preventDefault();
-
-        cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestino);
+                cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestino);
+            }
+        }  
     }
 }
+
 
 //============================================================================================
