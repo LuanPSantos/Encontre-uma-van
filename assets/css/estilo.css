@@ -12,6 +12,26 @@
     text-align: center;
 }
 
+#h1Titulo{
+    /*font-size: 3em;*/
+}
+
+@media only screen and (max-width: 415px){
+    #h1Titulo{
+        margin-top: -10px;
+        font-size: 20pt;
+    }
+    #h5Subtitulo{
+        margin-top: -10px;
+        font-size: 10pt;
+    }
+    #spanTituloHeader{
+        display: none;
+    }
+    #divLogin{
+        position: absolute;
+    }
+}
 #formBusca{
     padding: 20px;
 }
@@ -53,9 +73,9 @@
     text-align: center;
 }
 #imgPropaganda{
-    max-height: 150px;
-    
+    width: 100%;
 }
+
 
 #h3Resultados{
     text-align: center;

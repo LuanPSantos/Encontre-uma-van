@@ -39,7 +39,7 @@
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
 
-                    <span class="mdl-layout-title">Encontre uma van</span>
+                    <span id="spanTituloHeader" class="mdl-layout-title">Encontre uma van</span>
 
                     <div class="mdl-layout-spacer"></div>
 
@@ -49,32 +49,34 @@
                     </nav>
                 </div>            
             </header>
-            <!-- Conteiner de LOGIN -->
-            <div class="mdl-grid">
-                <div id="divLogin" class="mdl-cell mdl-cell--3-col-desktop  mdl-cell--2-offset-desktop">
-                    <form id="formLogin" class=" mdl-shadow--6dp">
-                        <div class="mdl-textfield mdl-js-textfield">                            
-                            <input class="mdl-textfield__input" type="email" id="emailLogin">
-                            <label class="mdl-textfield__label" for="emailLogin">E-mail..</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield">                             
-                            <input class="mdl-textfield__input" type="password" id="senhaLogin">
-                            <label class="mdl-textfield__label" for="senhaLogin">Senha...</label>
-                        </div>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="buttonLogin">Entrar</button>
-                    </form>
-                </div>
-            </div>
+            
+            
             <main  class="mdl-layout__content">
                 <div class="page-content">
+                    <!-- Conteiner de LOGIN -->
                     <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+                        <div id="divLogin" class="mdl-cell mdl-cell--3-col-desktop  mdl-cell--8-offset-desktop mdl-cell--4-col-tablet mdl-cell--3-offset-tablet mdl-cell--3-col-phone">
+                            <form id="formLogin" class=" mdl-shadow--6dp">
+                                <div class="mdl-textfield mdl-js-textfield">                            
+                                    <input class="mdl-textfield__input" type="email" id="emailLogin">
+                                    <label class="mdl-textfield__label" for="emailLogin">E-mail..</label>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield">                             
+                                    <input class="mdl-textfield__input" type="password" id="senhaLogin">
+                                    <label class="mdl-textfield__label" for="senhaLogin">Senha...</label>
+                                </div>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="buttonLogin">Entrar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--8-col-tablet">
                             <h1 id="h1Titulo">Encontre Uma Van</h1>
                             <h5 id="h5Subtitulo">De onde você quer sair, para onde você quer chegar.</h5>
                         </div>
                     </div>
                     <div class="mdl-grid">
-                        <section class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-offset-desktop">
+                        <section class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet">
                             <form id="formBusca" class="mdl-shadow--4dp">                              
                                 
                                 <div class="mdl-select-conteiner--estados-cidades">
@@ -116,12 +118,12 @@
                         </section>
                     </div>
                     <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--3-offset-desktop" id="divPropaganda">
+                        <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--3-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet" id="divPropaganda">
                             <img src="../assets/imagens/coca-cola.png" id="imgPropaganda">
                         </div>
                     </div>
                     <div class="mdl-grid">
-                        <section class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+                        <section class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet">
                             <h3 id="h3Resultados" class="mdl-shadow--4dp">Resultados</h3> 
                             <!-- Uma empresa da pesquisa -->
                             <article class="articleEmpresa mdl-shadow--4dp">
