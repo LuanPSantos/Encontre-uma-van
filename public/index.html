@@ -45,17 +45,22 @@
                     </nav>
                 </div>            
             </header>
-            <!--<div id="divLogin">
-                <form id="formLogin">
-                    <label>E-mail:</label>
-                    <input type="email" id="emailLogin">
-                    
-                    <label>Senha:</label>
-                    <input type="password" id="senhaLogin">
-
-                    <button id="buttonLogin">Entrar</button>
-                </form>
-            </div>-->
+            <!-- Conteiner de LOGIN -->
+            <div class="mdl-grid">
+                <div id="divLogin" class="mdl-cell mdl-cell--3-col-desktop  mdl-cell--2-offset-desktop">
+                    <form id="formLogin" class=" mdl-shadow--6dp">
+                        <div class="mdl-textfield mdl-js-textfield">                            
+                            <input class="mdl-textfield__input" type="email" id="emailLogin">
+                            <label class="mdl-textfield__label" for="emailLogin">E-mail..</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">                             
+                            <input class="mdl-textfield__input" type="password" id="senhaLogin">
+                            <label class="mdl-textfield__label" for="senhaLogin">Senha...</label>
+                        </div>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="buttonLogin">Entrar</button>
+                    </form>
+                </div>
+            </div>
             <main  class="mdl-layout__content">
                 <div class="page-content">
                     <div class="mdl-grid">
