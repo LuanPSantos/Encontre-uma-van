@@ -1,0 +1,116 @@
+#h1Titulo, #h5Subtitulo{
+    text-align: center;
+}
+
+#formBusca{
+    padding: 20px;
+}
+.mdl-select-conteiner--estados-cidades{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.mdl-select--personalizado{
+    margin: 0px;
+    padding: 8px 24px 8px 16px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #666;
+}
+
+#selectCidadeChegada, #selectCidadePartida{
+    width: calc(70% - 2px);
+}
+#selectEstadoPartida, #selectEstadoChegada{
+    width: calc(30% - 2px);
+}
+
+#divConteinerTextField{
+    width: 100%;
+}
+
+.divConteinerBotaoBuscar{
+    text-align: center;
+    width: 100%;
+}
+
+#buttonBuscar{
+    margin-top: 25px;
+}
+
+#divPropaganda{
+    text-align: center;
+}
+#imgPropaganda{
+    max-height: 150px;
+    
+}
+
+#h3Resultados{
+    text-align: center;
+    color: white;
+    background-color: midnightblue;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.articleEmpresa{
+    padding: 20px;
+}
+
+.pNomeEmpresas{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+.pNomeEmpresas:hover{
+    cursor: pointer;
+}
+.divDadosEmpresas{
+    /*display: none;*/
+}
+
+.pSobreEmpresa{
+    text-align: justify;
+}
+
+.pMensalidade{
+    border-bottom: 2px solid deeppink;
+    padding: 5px 20px 5px 20px;
+    font-size: 18pt;
+    display: block;
+    width: fit-content;
+    float: right;
+}
+
+.pPorMes{
+    display: block;
+    text-align: right;
+    position: relative;
+    font-size: 8pt;
+    padding: 0;
+    margin: 0;
+}
+
+.pTelefoneEmpresa, .pCelularEmpresa, .pFacebookEmpresa, .pEmailEmpresa{
+    font-size: 12pt;
+    margin-bottom: 2px;
+    padding: 5px;
+    /*background-color: brown;*/
+    width: fit-content;
+    /*border-radius: 3px;*/
+}
+
+.pTelefoneEmpresa{
+    border-bottom: 1px solid green;
+}
+.pCelularEmpresa{
+    border-bottom: 1px solid orange;
+}
+.pFacebookEmpresa{
+    border-bottom: 1px solid blue;
+}
+.pEmailEmpresa{
+    border-bottom: 1px solid red;
+}

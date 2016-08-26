@@ -4,9 +4,16 @@
         <meta charset="UTF-8">
         <title>Encontre uma van</title>
         <link rel="icon" href="../assets/imagens/logo_100.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- MDL -->
         <link rel="stylesheet" href="../assets/css/mdl/material.min.css">
         <script src="../assets/css/mdl/material.min.js"></script>
+        <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-amber.min.css" />
         <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
+        
+        <!-- Estilo personalizado -->
+        <link rel="stylesheet" href="../assets/css/estilo.css">
 
         <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
@@ -23,13 +30,22 @@
         <script src="../assets/javascript/jquery.js"></script>
     </head>  
     <body>
-        <header>
-            <h4>Encontre uma van</h4>
-            <nav>
-                <button>Entrar</button>
-                <a href="cadastro.html">Cadastrar</a>
-            </nav>
-            <div id="divLogin">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+
+                    <span class="mdl-layout-title">Encontre uma van</span>
+
+                    <div class="mdl-layout-spacer"></div>
+
+                    <nav class="mdl-navigation">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Entrar</button>
+                        <a class="mdl-navigation__link" href="cadastro.html">Cadastrar</a>
+                    </nav>
+                </div>            
+            </header>
+            <!--<div id="divLogin">
                 <form id="formLogin">
                     <label>E-mail:</label>
                     <input type="email" id="emailLogin">
@@ -39,56 +55,164 @@
 
                     <button id="buttonLogin">Entrar</button>
                 </form>
-            </div>
-        </header>
-        <main>
-            <h1>Encontre Uma Van</h1>
-            <h2>De onde você quer sair, para onde você quer chegar.</h2>
-            <section>
-                <form id="formBusca">
-                    <select id="selectEstadoPartida">
-                        <option>Estado</option>
-                    </select>
-                    <select id="selectCidadePartida">
-                        <option>Cidade de partida</option>
-			            <option>Cidade de partida</option>
-                    </select>
-                    <input type="text" id="inputEscola">
-                    <select id="selectEstadoChegada">
-                        <option>Estado</option>
-                    </select>
-                    <select id="selectCidadeChegada">
-                        <option>Cidade de chegada</option>
-                    </select>
-                    
-                    <button id="buttonBuscar">Buscar</button>
-                </form>
-            </section>
-            <div id="divPropaganda">
-                <img src="#" id="imgPropaganda">
-            </div>
-            <section>
-                <h3 id="h3Resultados">Resultados</h3> 
-                <article class="articleEmpresa">
-                    <h4 class="h4Empresas">Empresa</h4>
-                    <div class="divDadosEmpresas">
-                        <p class="pSobreEmpresa">Texto empresa</p>
-                        <p class="pMensalidade">R$250,00 </p>
-                        <p> por mês </p>
-                        <p class="pTelefoneEmpresa"> (00) 99999999 </p> <i> </i>
-                        <p class="pCelularEmpresa"> (00) 99999999 </p> <i> </i>
-                        <p class="pFacebookEmpresa"> (00) 99999999 </p> <i> </i>
-                        <p class="pEmailEmpresa"> exemplo@exemplo.com </p> <i> </i>                        
-                    </div>    
-                </article>   
-            </section>
-        </main>
-        <footer>
-            <section>
-                <i></i>
-                <i></i>
-                <p>Desenvolvido por EZ Solutions</p>
-            </section>
-        </footer>
+            </div>-->
+            <main  class="mdl-layout__content">
+                <div class="page-content">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+                            <h1 id="h1Titulo">Encontre Uma Van</h1>
+                            <h5 id="h5Subtitulo">De onde você quer sair, para onde você quer chegar.</h5>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <section class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-offset-desktop">
+                            <form id="formBusca" class="mdl-shadow--4dp">                              
+                                
+                                <div class="mdl-select-conteiner--estados-cidades">
+                                    <!-- Estados PARTIDA -->
+                                    <select id="selectEstadoPartida" class="mdl-select--personalizado">
+                                        <option>Estado</option>
+                                    </select>                               
+
+                                    <!-- Cidades PARTIDA -->                                
+                                    <select id="selectCidadePartida" class="mdl-select--personalizado">
+                                        <option>Cidade de partida</option>
+                                        <option>Cidade de partida</option>
+                                    </select>
+                                </div>   
+
+                                <!-- Escola DESEJADA -->
+                                <div id="divConteinerTextField" class="mdl-textfield mdl-js-textfield">
+                                    <input class="mdl-textfield__input" type="text" id="inputEscola" >
+                                    <label class="mdl-textfield__label" for="inputEscola">Escola desejada...</label>
+                                </div>
+                                
+                                <div class="mdl-select-conteiner--estados-cidades">
+                                    <!-- Estados CHEGADA -->
+                                    <select id="selectEstadoChegada" class="mdl-select--personalizado">
+                                        <option>Estado</option>
+                                    </select>
+
+                                    <!-- Cidades CHEGADA -->
+                                    <select id="selectCidadeChegada" class="mdl-select--personalizado">
+                                        <option>Cidade de chegada</option>
+                                    </select>
+                                </div>
+                                
+                                <!-- Botao BUSCAR -->
+                                <div class="divConteinerBotaoBuscar">
+                                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="buttonBuscar">Buscar</button>
+                                </div>
+                            </form>
+                        </section>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--3-offset-desktop" id="divPropaganda">
+                            <img src="../assets/imagens/coca-cola.png" id="imgPropaganda">
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <section class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+                            <h3 id="h3Resultados" class="mdl-shadow--4dp">Resultados</h3> 
+                            <!-- Uma empresa da pesquisa -->
+                            <article class="articleEmpresa mdl-shadow--4dp">
+                                <h5 class="pNomeEmpresas">Empresa</h5>
+                                <div class="divDadosEmpresas">
+                                    <p class="pSobreEmpresa">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Aliquam erat volutpat. Nunc auctor. Mauris pretium quam et urna. Fusce nibh. Duis risus. Curabitur sagittis hendrerit</p>
+                                    <p class="pMensalidade">R$ 250,00 <span class="pPorMes"> por mês</span></p>
+                                    <p class="pTelefoneEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pCelularEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pFacebookEmpresa">facebook.com/empresa</p><i></i>
+                                    <p class="pEmailEmpresa">exemplo@exemplo.com</p><i></i>                        
+                                </div>    
+                            </article>   
+
+                            <!--<article class="articleEmpresa mdl-shadow--4dp">
+                                <h5 class="pNomeEmpresas">Empresa</h5>
+                                <div class="divDadosEmpresas">
+                                    <p class="pSobreEmpresa">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Aliquam erat volutpat. Nunc auctor. Mauris pretium quam et urna. Fusce nibh. Duis risus. Curabitur sagittis hendrerit</p>
+                                    <p class="pMensalidade">R$ 250,00 <span class="pPorMes"> por mês</span></p>
+                                    <p class="pTelefoneEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pCelularEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pFacebookEmpresa">facebook.com/empresa</p><i></i>
+                                    <p class="pEmailEmpresa">exemplo@exemplo.com</p><i></i>                        
+                                </div>    
+                            </article> 
+
+                            <article class="articleEmpresa mdl-shadow--4dp">
+                                <h5 class="pNomeEmpresas">Empresa</h5>
+                                <div class="divDadosEmpresas">
+                                    <p class="pSobreEmpresa">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Aliquam erat volutpat. Nunc auctor. Mauris pretium quam et urna. Fusce nibh. Duis risus. Curabitur sagittis hendrerit</p>
+                                    <p class="pMensalidade">R$ 250,00 <span class="pPorMes"> por mês</span></p>
+                                    <p class="pTelefoneEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pCelularEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pFacebookEmpresa">facebook.com/empresa</p><i></i>
+                                    <p class="pEmailEmpresa">exemplo@exemplo.com</p><i></i>                        
+                                </div>    
+                            </article> 
+
+                            <article class="articleEmpresa mdl-shadow--4dp">
+                                <h5 class="pNomeEmpresas">Empresa</h5>
+                                <div class="divDadosEmpresas">
+                                    <p class="pSobreEmpresa">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Aliquam erat volutpat. Nunc auctor. Mauris pretium quam et urna. Fusce nibh. Duis risus. Curabitur sagittis hendrerit</p>
+                                    <p class="pMensalidade">R$ 250,00 <span class="pPorMes"> por mês</span></p>
+                                    <p class="pTelefoneEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pCelularEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pFacebookEmpresa">facebook.com/empresa</p><i></i>
+                                    <p class="pEmailEmpresa">exemplo@exemplo.com</p><i></i>                        
+                                </div>    
+                            </article> 
+
+
+                            <article class="articleEmpresa mdl-shadow--4dp">
+                                <h5 class="pNomeEmpresas">Empresa</h5>
+                                <div class="divDadosEmpresas">
+                                    <p class="pSobreEmpresa">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Aliquam erat volutpat. Nunc auctor. Mauris pretium quam et urna. Fusce nibh. Duis risus. Curabitur sagittis hendrerit</p>
+                                    <p class="pMensalidade">R$ 250,00 <span class="pPorMes"> por mês</span></p>
+                                    <p class="pTelefoneEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pCelularEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pFacebookEmpresa">facebook.com/empresa</p><i></i>
+                                    <p class="pEmailEmpresa">exemplo@exemplo.com</p><i></i>                        
+                                </div>    
+                            </article> 
+
+
+                            <article class="articleEmpresa mdl-shadow--4dp">
+                                <h5 class="pNomeEmpresas">Empresa</h5>
+                                <div class="divDadosEmpresas">
+                                    <p class="pSobreEmpresa">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Aliquam erat volutpat. Nunc auctor. Mauris pretium quam et urna. Fusce nibh. Duis risus. Curabitur sagittis hendrerit</p>
+                                    <p class="pMensalidade">R$ 250,00 <span class="pPorMes"> por mês</span></p>
+                                    <p class="pTelefoneEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pCelularEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pFacebookEmpresa">facebook.com/empresa</p><i></i>
+                                    <p class="pEmailEmpresa">exemplo@exemplo.com</p><i></i>                        
+                                </div>    
+                            </article> 
+
+                            <article class="articleEmpresa mdl-shadow--4dp">
+                                <h5 class="pNomeEmpresas">Empresa</h5>
+                                <div class="divDadosEmpresas">
+                                    <p class="pSobreEmpresa">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Aliquam erat volutpat. Nunc auctor. Mauris pretium quam et urna. Fusce nibh. Duis risus. Curabitur sagittis hendrerit</p>
+                                    <p class="pMensalidade">R$ 250,00 <span class="pPorMes"> por mês</span></p>
+                                    <p class="pTelefoneEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pCelularEmpresa">(00) 99999999</p><i></i>
+                                    <p class="pFacebookEmpresa">facebook.com/empresa</p><i></i>
+                                    <p class="pEmailEmpresa">exemplo@exemplo.com</p><i></i>                        
+                                </div>    
+                            </article> -->
+                        </section>
+                    </div>
+                    <footer class="mdl-mini-footer">
+                        <div class="mdl-mini-footer__left-section">
+                            <div class="mdl-logo">EZ Solutions</div>
+                            <ul class="mdl-mini-footer__link-list">
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Team</a></li>
+                            </ul>
+                        </div>
+                    </footer>
+                </div>
+            </main>            
+        </div>
     </body>  
 </html>
