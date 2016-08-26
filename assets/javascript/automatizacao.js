@@ -64,4 +64,14 @@ $(document).ready(function (){
     $("#sectionConteinerPartida").on("click",".buttonRemoverEstadoCidadeChegada", function(){
         $(this).parent().remove();
     });
+
+
+    // BOTAO ENTRAR para mostra a tela de login
+    $(".buttonEntrar").on("click",function(){
+        $("#divLogin").fadeToggle();
+    });
+
+    $(".pNomeEmpresas").on("click", function(){
+        $(this).next().slideToggle();
+    });
 });

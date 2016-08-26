@@ -78,10 +78,11 @@
     cursor: pointer;
 }
 .divDadosEmpresas{
-    /*display: none;*/
+    display: none;
 }
 
 .pSobreEmpresa{
+    margin-top: 10px;
     text-align: justify;
 }
 
