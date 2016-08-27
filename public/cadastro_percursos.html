@@ -5,6 +5,9 @@
         <title>Encontre uma van</title>
         <link rel="icon" href="../assets/imagens/logo_100.png">
 
+        <!-- mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <!-- MDL -->        
         <link rel="stylesheet" href="../assets/css/mdl/material.min.css">
         <script src="../assets/css/mdl/material.min.js"></script>
@@ -50,7 +53,7 @@
                 <div class="page-content">
                     <!-- Conteiner de LOGIN -->
                     <div class="mdl-grid">
-                        <div id="divLogin" class="mdl-cell mdl-cell--3-col-desktop  mdl-cell--8-offset-desktop mdl-cell--4-col-tablet mdl-cell--3-offset-tablet mdl-cell--3-col-phone">
+                        <div id="divLogin" class="mdl-cell mdl-cell--3-col-desktop  mdl-cell--8-offset-desktop mdl-cell--3-col-phone mdl-cell--3-col-tablet mdl-cell--4-offset-tablet">
                             <form id="formLogin" class=" mdl-shadow--6dp">
                                 <div class="mdl-textfield mdl-js-textfield">                            
                                     <input class="mdl-textfield__input" type="email" id="emailLogin">
@@ -65,14 +68,14 @@
                         </div>
                     </div>
                     <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset">
+                        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--1-offset-tablet">
                             <h1 id="h1Titulo">Cadastre seus percursos!</h1>
                         </div>
                     </div>
                     <section>                        
                         <form id="formCadastrarPercursos" onsubmit="return false;">
                             <div class="mdl-grid">
-                                <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--2-offset mdl-shadow--4dp background-white">
+                                <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--2-offset-desktop mdl-cell mdl-cell--4-col-phone mdl-cell mdl-cell--6-col-tablet mdl-cell--1-offset-tablet mdl-shadow--4dp background-white">
                                     <section id="sectionConteinerPartida" class="sectionConteinerCadastro">
                                         <h5>Em quais cidades você passa para pegar passageiros?</h5>
                                         <select class="selectEstadosPartida">
@@ -85,7 +88,7 @@
                                         <button id="buttonAdicionarCidadePartida" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+</button>
                                     </section>
                                 </div>
-                                <div class="mdl-cell mdl-cell--4-col-desktop mdl-shadow--4dp background-white">
+                                <div class="mdl-cell mdl-cell--4-col-desktop mdl-shadow--4dp mdl-cell mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--1-offset-tablet  background-white">
                                     <section  id="sectionConteinerChegada" class="sectionConteinerCadastro">
                                         <h5>Em quais cidades você passa para deixar passageiros?</h5>
                                         <select class="selectEstadosChegada">
@@ -108,7 +111,7 @@
                                 </div>
                             </div>
                             <div class="mdl-grid">
-                                <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset divConteinerBotaoSalvar mdl-shadow--4dp mdl-color--primary">
+                                <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell mdl-cell--4-col-phone mdl-cell--6-col-tablet mdl-cell--1-offset-tablet divConteinerBotaoSalvar mdl-shadow--4dp mdl-color--primary">
                                     <button id="buttonCadastroPercursosEmpresa"class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Pronto</button> 
                                 </div>
                             </div> 

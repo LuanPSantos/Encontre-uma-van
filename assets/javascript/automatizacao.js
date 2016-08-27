@@ -1,4 +1,13 @@
+//Busca os estados e as cidades no banco para preencher os selects
+var estados_cidades = {};
+firebase.database().ref('/estados-consulta').once('value').then(function(snapshot){
+    estados_cidades = snapshot.val();   
 
+    for(var i = 0; i < estados_cidades.length; i++){
+        $("#selectEstadoPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
+        $("#selectEstadoChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
+    }     
+});
 
 
 var ultimoNumero = 0;
@@ -59,9 +68,10 @@ $(document).ready(function (){
                 '<option>Cidade</option>'+
             '</select>'+
             '<button class="buttonRemoverEstadoCidadeChegada mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
-            '<select class="selectEscolasDestino">'+
-                '<option>Escola</option>'+
-            '</select>'+
+            '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ /* Grande problema aqui!!! */
+                '<input class="mdl-textfield__input" type="text" id="inputEscola'+ ultimoNumero +'" pattern="[a-zA-Z\s]+$">'+
+                '<label class="mdl-textfield__label" for="inputEscola'+ ultimoNumero +'">Escola destino...'+ ultimoNumero +'</label>'+
+            '</div>'+
             '<button class="buttonAdicionarEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Escola</button>'+
         '</div>';
 
@@ -89,15 +99,7 @@ $(document).ready(function (){
     var cidadesChegada = document.getElementById("selectCidadeChegada");
     var selectEstadoPartida = document.getElementById("selectEstadoPartida");
     var selectEstadoChegada = document.getElementById("selectEstadoChegada");
-    var estados_cidades = {};
-    firebase.database().ref('/estados-consulta').once('value').then(function(snapshot){
-        estados_cidades = snapshot.val();
-
-        for(var i = 0; i < estados_cidades.length; i++){
-            $("#selectEstadoPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
-            $("#selectEstadoChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
-        }
-    });
+    
 
     $("#selectEstadoPartida").on("change",function(){
         
@@ -123,7 +125,5 @@ $(document).ready(function (){
             }
         }
 
-    });
-
-    
+    });    
 });
