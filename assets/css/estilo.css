@@ -1,3 +1,6 @@
+body{
+    background-color: #F1F1F1;
+}
 /* index */
 #divLogin{
     position: fixed;
@@ -11,7 +14,7 @@
 }
 #formLogin{
     padding: 20px;  
-    background: white;; 
+    background: white; 
 }
 
 #h1Titulo, #h5Subtitulo{
@@ -39,6 +42,7 @@
     }
 }
 #formBusca{
+    background-color: white;
     padding: 20px;
 }
 .mdl-select-conteiner--estados-cidades{
@@ -52,7 +56,7 @@
     padding: 8px 24px 8px 16px;
     outline: none;
     border: none;
-    border-bottom: 2px solid #666;
+    border-bottom: 2px solid #d2d2d2;
 }
 
 #selectCidadeChegada, #selectCidadePartida{
@@ -64,6 +68,10 @@
 
 #divConteinerTextField{
     width: 100%;
+}
+
+.divConteinerTextFieldPercursos{
+    width: 80%;
 }
 
 .divConteinerBotaoBuscar{
@@ -86,13 +94,15 @@
 #h3Resultados{
     text-align: center;
     color: white;
-    background-color: midnightblue;
+    /*background-color: midnightblue;*/
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
 .articleEmpresa{
     padding: 20px;
+    background-color: white;
+    margin-bottom: 2px;
 }
 
 .pNomeEmpresas{
@@ -160,7 +170,7 @@
 .selectEstadosPartida, .selectCidadesPartida, .selectEstadosChegada, .selectCidadesChegada, .selectEscolasDestino{
     padding: 8px 24px 8px 16px;
     border: none;
-    border-bottom: 2px solid #666;
+    border-bottom: 2px solid #d2d2d2;
     outline: none;
 }
 
@@ -219,13 +229,19 @@
     padding-bottom: 20px;
     text-align: center;
     margin-bottom: 20px;
+    background-color: white;
 }
 
 /*Cadastro*/
  .conteinerInputs{
-     padding: 20px;     
+     padding: 20px;   
+     background-color: white;  
  }
  
  .conteinerInputs div{
      width: 80%;
+ }
+
+ .background-white{
+     background-color: white;
  }

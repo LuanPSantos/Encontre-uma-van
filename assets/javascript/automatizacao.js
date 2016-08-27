@@ -1,7 +1,7 @@
 
 
 
-
+var ultimoNumero = 0;
 
 $(document).ready(function (){
 
@@ -28,12 +28,15 @@ $(document).ready(function (){
     });
 
     // ADD nova escola na sessão de chegada
+    
     $("#sectionConteinerChegada").on("click",".buttonAdicionarEscolaDestino", function(){
+        ultimoNumero++;
         var html = 
         '<div class="divConteinerEscolaDestino">'+
-            '<select class="selectEscolasDestino">'+
-                '<option>Escola</option>'+
-            '</select>'+
+            '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ /* Grande problema aqui!!! */
+                '<input class="mdl-textfield__input" type="text" id="inputEscola'+ ultimoNumero +'" pattern="[a-zA-Z\s]+$">'+
+                '<label class="mdl-textfield__label" for="inputEscola'+ ultimoNumero +'">Escola destino...'+ ultimoNumero +'</label>'+
+            '</div>'+
             '<button class="buttonRemoverEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
         '</div>'
 
