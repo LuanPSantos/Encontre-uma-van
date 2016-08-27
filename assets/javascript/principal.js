@@ -13,7 +13,7 @@ var botaoBuscar = document.getElementById("buttonBuscar");
 
 // //cadastrar
 var formCadastrar = document.getElementById("formCadastrar");
-var botaoCadastrar = document.getElementById("buttonCadastrarEmpresa");
+var botaoCadastrar = document.getElementById("buttonCadastroEmpresa");
 
 //Cadastrar PERCURSOS
 var formCadastrarPercursos = document.getElementById("formCadastrarPercursos");
@@ -33,11 +33,15 @@ function logar(emailLogin, senhaLogin){
         // ...
         alert("ERRO-login: " + errorMessage);
     });
+
+    
+    $("#divLogin").fadeOut();
+    
 }
 
 if(botaoLogin != null){
     botaoLogin.onclick = function (event){
-        event.preventDefault();
+        //event.preventDefault();
         if(formLogin != null){
             formLogin.onsubmit = function(e){
 
@@ -46,6 +50,9 @@ if(botaoLogin != null){
                 e.preventDefault();
 
                 logar(emailLogin, senhaLogin);
+
+                document.getElementById("emailLogin").value = '';
+                document.getElementById("senhaLogin").value = '';
             };
         }
     }
@@ -89,10 +96,10 @@ function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, senhaEmpresa, facebook
 
 if(botaoCadastrar != null){
     botaoCadastrar.onclick = function (event){
-        event.preventDefault();
+        //event.preventDefault();
         if(formCadastrar != null){
             formCadastrar.onsubmit = function(e){
-
+                
                 //cadastrar
                 var nomeEmpresa = document.getElementById("inputNomeEmpresa").value;
                 var emailEmpresa = document.getElementById("inputEmailEmpresa").value;

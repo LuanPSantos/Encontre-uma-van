@@ -7,11 +7,7 @@
         <link rel="stylesheet" href="../assets/css/mdl/material.min.css">
         <script src="../assets/css/mdl/material.min.js"></script>
         <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
-
-        <!-- Javascript -->
-        <script src="../assets/javascript/jquery.js"></script>
-        <script src="../assets/javascript/automatizacao.js"></script>
-        
+  
         <!-- CSS -->
         <link rel="stylesheet" href="../assets/css/estilo.css">
         
@@ -27,6 +23,10 @@
             };
             firebase.initializeApp(config);
         </script>
+
+        <!-- Javascript -->
+        <script src="../assets/javascript/jquery.js"></script>
+        <script src="../assets/javascript/automatizacao.js"></script>
     </head>  
     <body>
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -94,6 +94,11 @@
                                         <select class="selectEscolasDestino">
                                             <option>Escola</option>
                                         </select><br>
+                                        <!-- ARRUMAR AQUI 
+                                        <div id="divConteinerTextField" class="mdl-textfield mdl-js-textfield">
+                                            <input class="mdl-textfield__input" type="text" id="inputEscola" pattern="[a-zA-Z\s]+$">
+                                            <label class="mdl-textfield__label" for="inputEscola">Escola desejada...</label>
+                                        </div> -->
                                         <button class="buttonAdicionarEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Escola</button><br>
                                         <button id="buttonAdicionarEstadoCidadeChegada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Cidade</button>
                                     </section>

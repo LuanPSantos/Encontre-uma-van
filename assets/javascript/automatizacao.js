@@ -1,3 +1,8 @@
+
+
+
+
+
 $(document).ready(function (){
 
     // ADD novo Estado-cidade na sessão de partida
@@ -76,11 +81,12 @@ $(document).ready(function (){
     });
 
     // Adicionar cidades e estados nos selects
-    var estados_cidades = {};
+    
     var cidadespartida = document.getElementById("selectCidadePartida");
     var cidadesChegada = document.getElementById("selectCidadeChegada");
     var selectEstadoPartida = document.getElementById("selectEstadoPartida");
     var selectEstadoChegada = document.getElementById("selectEstadoChegada");
+    var estados_cidades = {};
     firebase.database().ref('/estados-consulta').once('value').then(function(snapshot){
         estados_cidades = snapshot.val();
 

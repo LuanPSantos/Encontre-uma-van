@@ -12,12 +12,8 @@
         <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-amber.min.css" />
         <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
         
-        <!-- Estilo personalizado -->
+        <!-- CSS -->
         <link rel="stylesheet" href="../assets/css/estilo.css">
-
-        <!-- Javascript -->
-        <script src="../assets/javascript/jquery.js"></script>
-        <script src="../assets/javascript/automatizacao.js"></script>
 
         <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
@@ -31,7 +27,10 @@
             };
             firebase.initializeApp(config);
         </script>
+
+        <!-- Javascript -->
         <script src="../assets/javascript/jquery.js"></script>
+        <script src="../assets/javascript/automatizacao.js"></script>
     </head>  
     <body>
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -39,7 +38,7 @@
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
 
-                    <span id="spanTituloHeader" class="mdl-layout-title">Encontre uma van</span>
+                    <span id="spanTituloHeader" class="mdl-layout-title"><a id="aTituloHeader" href="index.html">Encontre uma van</a></span>
 
                     <div class="mdl-layout-spacer"></div>
 
@@ -58,11 +57,11 @@
                         <div id="divLogin" class="mdl-cell mdl-cell--3-col-desktop  mdl-cell--8-offset-desktop mdl-cell--4-col-tablet mdl-cell--3-offset-tablet mdl-cell--3-col-phone">
                             <form id="formLogin" class=" mdl-shadow--6dp">
                                 <div class="mdl-textfield mdl-js-textfield">                            
-                                    <input class="mdl-textfield__input" type="email" id="emailLogin">
+                                    <input class="mdl-textfield__input" type="email" id="emailLogin" autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                                     <label class="mdl-textfield__label" for="emailLogin">E-mail..</label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield">                             
-                                    <input class="mdl-textfield__input" type="password" id="senhaLogin">
+                                    <input class="mdl-textfield__input" type="password" id="senhaLogin" autocomplete="off">
                                     <label class="mdl-textfield__label" for="senhaLogin">Senha...</label>
                                 </div>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="buttonLogin">Entrar</button>
@@ -93,7 +92,7 @@
 
                                 <!-- Escola DESEJADA -->
                                 <div id="divConteinerTextField" class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" id="inputEscola" >
+                                    <input class="mdl-textfield__input" type="text" id="inputEscola" pattern="[a-zA-Z\s]+$">
                                     <label class="mdl-textfield__label" for="inputEscola">Escola desejada...</label>
                                 </div>
                                 
@@ -224,5 +223,6 @@
                 </div>
             </main>            
         </div>
-    </body>  
+    </body> 
+    <script src="../assets/javascript/principal.js"></script> 
 </html>
