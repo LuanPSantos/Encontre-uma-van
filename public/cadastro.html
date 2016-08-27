@@ -4,10 +4,19 @@
         <meta charset="UTF-8">
         <title>Encontre uma van</title>
         <link rel="icon" href="../assets/imagens/logo_100.png">
+        <!-- MDL -->
         <link rel="stylesheet" href="../assets/css/mdl/material.min.css">
         <script src="../assets/css/mdl/material.min.js"></script>
+        <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-amber.min.css" />
         <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
 
+        <!-- Javascript -->
+        <script src="../assets/javascript/jquery.js"></script>
+        <script src="../assets/javascript/automatizacao.js"></script>
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="../assets/css/estilo.css">
+        
         <!-- Firebase -->
         <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
         <script>
@@ -23,68 +32,106 @@
         <script src="../assets/javascript/jquery.js"></script>
     </head>  
     <body>
-        <header>
-            <h4>Encontre uma van</h4>
-            <nav>
-                <button>Entrar</button>
-                <a href="cadastro.html">Cadastrar</a>
-            </nav>
-            <div id="divLogin">
-                <form id="formLogin">
-                    <label>E-mail:</label>
-                    <input type="email" id="emailLogin">
-                    
-                    <label>Senha:</label>
-                    <input type="password" id="senhaLogin">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
 
-                    <button id="buttonLogin">Entrar</button>
-                </form>
-            </div>
-        </header>
-        <main>
-            <h1>Cadastre-se</h1>
-            <section> 
-                <form id="formCadastrar">
-                    <label for="inputNomeEmpresa">Nome da empresa </label>
-                    <input type="text" id="inputNomeEmpresa">
-                    
-                    <label for="inputEmailEmpresa">E-mail</label>
-                    <input type="email" id="inputEmailEmpresa">
-                    
-                    <label for="inputSenhaEmpresa">Senha</label>
-                    <input type="Password" id="inputSenhaEmpresa">
-                    
-                    <label for="inputConfirmarSenhaEmpresa">Confirmar senha</label>
-                    <input type="Password" id="inputConfirmarSenhaEmpresa">
-                    
-                    <label for="inputFacebookEmpresa">Facebook</label>
-                    <input type="text" id="inputFacebookEmpresa">
-                    
-                    <label for="inputTelefoneEmpresa">Telefone</label>
-                    <input type="tel" id="inputTelefoneEmpresa">
-                    
-                    <label for="inputCelularEmpresa">Celular</label>
-                    <input type="tel" id="inputCelularEmpresa">
-                    
-                    <label for="inputMensalidadeEmpresa">Mensalidade</label>
-                    <input type="text" id="inputMensalidadeEmpresa">
-                    
-                    <label for="textareaSobreEmpresa">Sobre a empresa</label>
-                    <textarea id="textareaSobreEmpresa"></textarea>
-                    
-                    <div>
-                        <button id="buttonCadastroEmpresa">Pronto</button> 
-                    </div>                
-                </form>
-            </section>
-        </main>
-        <footer>
-            <section>
-                <i></i>
-                <i></i>
-                <p>Desenvolvido por EZ Solutions</p>
-            </section>
-        </footer>
+                    <span id="spanTituloHeader" class="mdl-layout-title">Encontre uma van</span>
+
+                    <div class="mdl-layout-spacer"></div>
+
+                    <nav class="mdl-navigation">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent buttonEntrar">Entrar</button>
+                        <a class="mdl-navigation__link" href="cadastro.html">Cadastrar</a>
+                    </nav>
+                </div>            
+            </header>
+            <main class="mdl-layout__content">
+                <div class="page-content">
+                    <!-- Conteiner de LOGIN -->
+                    <div class="mdl-grid">
+                        <div id="divLogin" class="mdl-cell mdl-cell--3-col-desktop  mdl-cell--8-offset-desktop mdl-cell--4-col-tablet mdl-cell--3-offset-tablet mdl-cell--3-col-phone">
+                            <form id="formLogin" class=" mdl-shadow--6dp">
+                                <div class="mdl-textfield mdl-js-textfield">                            
+                                    <input class="mdl-textfield__input" type="email" id="emailLogin">
+                                    <label class="mdl-textfield__label" for="emailLogin">E-mail..</label>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield">                             
+                                    <input class="mdl-textfield__input" type="password" id="senhaLogin">
+                                    <label class="mdl-textfield__label" for="senhaLogin">Senha...</label>
+                                </div>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="buttonLogin">Entrar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+                            <h1 id="h1Titulo">Cadastre-se</h1>
+                        </div>
+                    </div>                    
+                    <section>                        
+                        <form id="formCadastrar"> 
+                            <div class="mdl-grid">
+                                <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-shadow--4dp">   
+                                    <div class="conteinerInputs">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">                            
+                                            <input class="mdl-textfield__input" type="text" id="inputNomeEmpresa">
+                                            <label class="mdl-textfield__label" for="inputNomeEmpresa">Nome da empresa </label>                               
+                                        </div><br>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="email" id="inputEmailEmpresa">
+                                            <label class="mdl-textfield__label" for="inputEmailEmpresa">E-mail</label>                                
+                                        </div><br>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="Password" id="inputSenhaEmpresa">
+                                            <label class="mdl-textfield__label" for="inputSenhaEmpresa">Senha</label>                                
+                                        </div><br>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="Password" id="inputConfirmarSenhaEmpresa">
+                                            <label class="mdl-textfield__label" for="inputConfirmarSenhaEmpresa">Confirmar senha</label>                                
+                                        </div><br>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" id="inputFacebookEmpresa">
+                                            <label class="mdl-textfield__label" for="inputFacebookEmpresa">Facebook</label>                                
+                                        </div><br>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="tel" id="inputTelefoneEmpresa">
+                                            <label class="mdl-textfield__label" for="inputTelefoneEmpresa">Telefone</label>                                
+                                        </div><br>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="tel" id="inputCelularEmpresa">
+                                            <label class="mdl-textfield__label" for="inputCelularEmpresa">Celular</label>                                
+                                        </div><br>
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                            <input class="mdl-textfield__input" type="text" id="inputMensalidadeEmpresa">
+                                            <label class="mdl-textfield__label" for="inputMensalidadeEmpresa">Mensalidade</label>                                
+                                        </div><br>
+                                        <div class="mdl-textfield mdl-js-textfield">
+                                            <textarea class="mdl-textfield__input" id="textareaSobreEmpresa"></textarea>
+                                            <label class="mdl-textfield__label" for="textareaSobreEmpresa">Sobre a empresa</label>
+                                        </div><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mdl-grid">
+                                <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset divConteinerBotaoSalvar mdl-shadow--4dp">
+                                    <button id="buttonCadastroEmpresa"class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Pronto</button> 
+                                </div>
+                            </div>               
+                        </form>                   
+                    </section>
+                    <footer class="mdl-mini-footer">
+                        <div class="mdl-mini-footer__left-section">
+                            <div class="mdl-logo">EZ Solutions</div>
+                            <ul class="mdl-mini-footer__link-list">
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Team</a></li>
+                            </ul>
+                        </div>
+                    </footer>
+                </div>
+            </main>
+        </div>
     </body>  
     <script src="../assets/javascript/principal.js"></script>
 </html>

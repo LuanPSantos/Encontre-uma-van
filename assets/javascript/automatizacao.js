@@ -4,39 +4,39 @@ $(document).ready(function (){
     $("#buttonAdicionarCidadePartida").on("click",function (){
         var html = 
         '<div class="divConteinerEstadoCidadePartida">'+
-            '<select class="selectEstadosPartida">'+
+            '<select class="selectEstadosPartida margin-right-4px">'+
                 '<option>Estado</option>'+
             '</select>'+
             
             '<select class="selectCidadesPartida">'+
                 '<option>Cidade</option>'+
             '</select>'+
-            '<button class="buttonRemoverConteinerEstadoCidadePartida">-</button>'
+            '<button class="buttonRemoverConteinerEstadoCidadePartida mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'
         '</div>';
 
         $(this).before(html);      
     });
 
     // Remover Estado-cidade da sessão de partida
-    $("#sectionConteinerChegada").on("click",".buttonRemoverConteinerEstadoCidadePartida", function(){
+    $("#sectionConteinerPartida").on("click",".buttonRemoverConteinerEstadoCidadePartida", function(){
         $(this).parent().remove();
     });
 
     // ADD nova escola na sessão de chegada
-    $("#sectionConteinerPartida").on("click",".buttonAdicionarEscolaDestino", function(){
+    $("#sectionConteinerChegada").on("click",".buttonAdicionarEscolaDestino", function(){
         var html = 
         '<div class="divConteinerEscolaDestino">'+
             '<select class="selectEscolasDestino">'+
                 '<option>Escola</option>'+
             '</select>'+
-            '<button class="buttonRemoverEscolaDestino">-</button>'+
+            '<button class="buttonRemoverEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
         '</div>'
 
         $(this).before(html);
     });
 
     // Remover escola
-    $("#sectionConteinerPartida").on("click",".buttonRemoverEscolaDestino", function(){
+    $("#sectionConteinerChegada").on("click",".buttonRemoverEscolaDestino", function(){
         $(this).parent().remove();
     });
 
@@ -44,24 +44,24 @@ $(document).ready(function (){
     $("#buttonAdicionarEstadoCidadeChegada").on("click", function(){
         var html =
         '<div class="divConteinerEstadoCidadeEscolaPartida">'+
-            '<select class="selectEstadosChegada">'+
+            '<select class="selectEstadosChegada margin-right-4px">'+
                 '<option>Estado</option>'+
             '</select>'+            
             '<select class="selectCidadesChegada">'+
                 '<option>Cidade</option>'+
             '</select>'+
-            '<button class="buttonRemoverEstadoCidadeChegada">- Cidade</button>'+
+            '<button class="buttonRemoverEstadoCidadeChegada mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
             '<select class="selectEscolasDestino">'+
                 '<option>Escola</option>'+
             '</select>'+
-            '<button class="buttonAdicionarEscolaDestino">+</button>'+
+            '<button class="buttonAdicionarEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Escola</button>'+
         '</div>';
 
         $(this).before(html);
     });
 
     // Remover estado-cidade-escola
-    $("#sectionConteinerPartida").on("click",".buttonRemoverEstadoCidadeChegada", function(){
+    $("#sectionConteinerChegada").on("click",".buttonRemoverEstadoCidadeChegada", function(){
         $(this).parent().remove();
     });
 

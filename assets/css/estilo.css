@@ -1,5 +1,6 @@
+/* index */
 #divLogin{
-    position: absolute;
+    position: fixed;
     z-index: 3;
     display: none;
 }
@@ -145,3 +146,81 @@
 .pEmailEmpresa{
     border-bottom: 1px solid red;
 }
+
+/* cadastro percursos*/
+.sectionConteinerCadastro{
+    padding: 20px;
+}
+
+.selectEstadosPartida, .selectCidadesPartida, .selectEstadosChegada, .selectCidadesChegada, .selectEscolasDestino{
+    padding: 8px 24px 8px 16px;
+    border: none;
+    border-bottom: 2px solid #666;
+    outline: none;
+}
+
+.selectEstadosPartida, .selectEstadosChegada{
+    width: calc(30% - 2px);
+}
+
+.margin-right-4px{
+    margin-top: 10px;
+    margin-right: 4px;
+}
+
+.selectCidadesPartida, .selectCidadesChegada{
+    width: calc(50% - 2px);
+}
+
+.buttonRemoverConteinerEstadoCidadePartida{
+    margin-left: 10px;
+}
+
+#buttonAdicionarCidadePartida{
+    margin-top: 20px;
+}
+
+.selectEscolasDestino{
+    width: 80%;
+}
+
+.buttonAdicionarEscolaDestino{
+    /*float: right;*/
+    margin-top: 10px;
+}
+
+#buttonAdicionarEstadoCidadeChegada{
+    margin-top: 50px;
+}
+
+.divConteinerEstadoCidadeEscolaPartida{
+    margin-top: 50px;
+}
+
+.selectEscolasDestino{
+    margin-top: 10px;
+}
+
+.buttonRemoverEscolaDestino{
+    margin-left: 10px;
+}
+
+.buttonRemoverEstadoCidadeChegada{
+    margin-left: 10px;
+}
+
+.divConteinerBotaoSalvar{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/*Cadastro*/
+ .conteinerInputs{
+     padding: 20px;     
+ }
+ 
+ .conteinerInputs div{
+     width: 80%;
+ }
