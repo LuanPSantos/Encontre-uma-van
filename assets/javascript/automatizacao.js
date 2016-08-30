@@ -43,8 +43,9 @@ $(document).ready(function (){
         var html = 
         '<div class="divConteinerEscolaDestino">'+
             '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ /* Grande problema aqui!!! */
-                '<input class="mdl-textfield__input" type="text" id="inputEscola'+ ultimoNumero +'" pattern="[a-zA-Z\s]+$">'+
-                '<label class="mdl-textfield__label" for="inputEscola'+ ultimoNumero +'">Escola destino...'+ ultimoNumero +'</label>'+
+                '<input class="mdl-textfield__input mdl-fake-textfield__input" type="text" id="inputEscola'+ ultimoNumero +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
+                // '<label class="mdl-textfield__label mdl-fake-textfield__label" for="inputEscola'+ ultimoNumero +'">Escola destino...'+ ultimoNumero +'</label>'+
+                '<span class="bar"></span>'+
             '</div>'+
             '<button class="buttonRemoverEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
         '</div>'
