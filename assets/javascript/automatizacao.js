@@ -1,13 +1,13 @@
 //Busca os estados e as cidades no banco para preencher os selects
-var estados_cidades = {};
-firebase.database().ref('/estados-consulta').once('value').then(function(snapshot){
-    estados_cidades = snapshot.val();   
+// var estados_cidades = {};
+// firebase.database().ref('/estados-consulta').once('value').then(function(snapshot){
+//     estados_cidades = snapshot.val();   
 
-    for(var i = 0; i < estados_cidades.length; i++){
-        $("#selectEstadoPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
-        $("#selectEstadoChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
-    }     
-});
+//     for(var i = 0; i < estados_cidades.length; i++){
+//         $("#selectEstadoPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
+//         $("#selectEstadoChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
+//     }     
+// });
 
 
 var ultimoNumero = 0;
@@ -43,8 +43,9 @@ $(document).ready(function (){
         var html = 
         '<div class="divConteinerEscolaDestino">'+
             '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ /* Grande problema aqui!!! */
-                '<input class="mdl-textfield__input" type="text" id="inputEscola'+ ultimoNumero +'" pattern="[a-zA-Z\s]+$">'+
-                '<label class="mdl-textfield__label" for="inputEscola'+ ultimoNumero +'">Escola destino...'+ ultimoNumero +'</label>'+
+                '<input class="mdl-textfield__input mdl-fake-textfield__input" type="text" id="inputEscola'+ ultimoNumero +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
+                // '<label class="mdl-textfield__label mdl-fake-textfield__label" for="inputEscola'+ ultimoNumero +'">Escola destino...'+ ultimoNumero +'</label>'+
+                '<span class="bar"></span>'+
             '</div>'+
             '<button class="buttonRemoverEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
         '</div>'
@@ -69,8 +70,9 @@ $(document).ready(function (){
             '</select>'+
             '<button class="buttonRemoverEstadoCidadeChegada mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
             '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ /* Grande problema aqui!!! */
-                '<input class="mdl-textfield__input" type="text" id="inputEscola'+ ultimoNumero +'" pattern="[a-zA-Z\s]+$">'+
-                '<label class="mdl-textfield__label" for="inputEscola'+ ultimoNumero +'">Escola destino...'+ ultimoNumero +'</label>'+
+                '<input class="mdl-textfield__input mdl-fake-textfield__input" type="text" id="inputEscola2'+ ultimoNumero +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
+                // '<label class="mdl-textfield__label mdl-fake-textfield__label" for="inputEscola'+ ultimoNumero +'">Escola destino...'+ ultimoNumero +'</label>'+
+                '<span class="bar"></span>'+
             '</div>'+
             '<button class="buttonAdicionarEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Escola</button>'+
         '</div>';

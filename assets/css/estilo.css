@@ -25,22 +25,7 @@ body{
     /*font-size: 3em;*/
 }
 
-@media only screen and (max-width: 415px){
-    #h1Titulo{
-        margin-top: -10px;
-        font-size: 20pt;
-    }
-    #h5Subtitulo{
-        margin-top: -10px;
-        font-size: 10pt;
-    }
-    #spanTituloHeader{
-        display: none;
-    }
-    #divLogin{
-        position: absolute;
-    }
-}
+
 #formBusca{
     background-color: white;
     padding: 20px;
@@ -245,3 +230,98 @@ body{
  .background-white{
      background-color: white;
  }
+
+ /* EFEITO MATERIAL DESIGN NAS ESCOLAS DESTINO */
+.divConteinerTextFieldPercursos{
+    outline: none;
+}
+.mdl-fake-textfield__input{
+    outline: none;
+}
+
+/* animação da bar*/
+.bar { position: relative; display: block; width: 300px; }
+.bar:before, .bar:after {
+    content: "";
+    height: 2px;
+    width: 0;
+    bottom: -1px;
+    position: absolute;
+    background: #5264ae;
+    transition: 0.2s ease all;
+}
+.bar:before { left: 50%; }
+.bar:after { right: 50%; }
+
+.mdl-fake-textfield__input:invalid ~ .bar:before,
+.mdl-fake-textfield__input:invalid ~ .bar:after {
+    background: red !important;
+}
+
+::-webkit-input-placeholder {
+   color: #d2d2d2;
+}
+
+:-moz-placeholder {
+   color: #d2d2d2;
+}
+
+::-moz-placeholder {
+   color: #d2d2d2;
+}
+
+:-ms-input-placeholder {  
+   color: #d2d2d2;
+}
+
+.mdl-fake-textfield__input:focus ~ .bar:before,
+.mdl-fake-textfield__input:focus ~ .bar:after {
+    width: 50%;
+}
+/*FIM EFEITO MATERIAL DESIGN NAS ESCOLAS DESTINO */
+/*Pagina Time*/
+
+.imgFotoTime{
+    width: 100%;
+    border-radius: 50%;
+}
+
+.spanNomeTime{
+    text-align: center;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+}
+
+.spanTextoTime{
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+.spanEmailTime{
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+.divIntegrantes{
+    margin-bottom: 25px;
+}
+
+@media only screen and (max-width: 415px){
+    #h1Titulo{
+        margin-top: -10px;
+        font-size: 20pt;
+    }
+    #h5Subtitulo{
+        margin-top: -10px;
+        font-size: 10pt;
+    }
+    #spanTituloHeader{
+        display: none;
+    }
+    #divLogin{
+        position: absolute;
+    }
+}
