@@ -162,15 +162,15 @@ body{
 .selectEstadosPartida, .selectEstadosChegada{
     width: calc(30% - 2px);
 }
+.selectCidadesPartida, .selectCidadesChegada{
+    width: calc(50% - 2px);
+}
 
 .margin-right-4px{
     margin-top: 10px;
     margin-right: 4px;
 }
 
-.selectCidadesPartida, .selectCidadesChegada{
-    width: calc(50% - 2px);
-}
 
 .buttonRemoverConteinerEstadoCidadePartida{
     margin-left: 10px;
@@ -240,7 +240,7 @@ body{
 }
 
 /* animação da bar*/
-.bar { position: relative; display: block; width: 300px; }
+.bar { position: relative; display: block; width: 100%; }
 .bar:before, .bar:after {
     content: "";
     height: 2px;
@@ -322,6 +322,21 @@ body{
         display: none;
     }
     #divLogin{
-        position: absolute;
+        position: fixed;
     }
+
+     .conteinerInputs div{
+        width: 100%;
+    }
+
+    .selectEstadosPartida, .selectEstadosChegada{
+        width: calc(32% - 2px);
+    }
+    .selectCidadesPartida, .selectCidadesChegada{
+        width: calc(45% - 2px);
+    }
+    .divConteinerTextFieldPercursos{
+    width: 77%;
+}
+
 }

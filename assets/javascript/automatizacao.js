@@ -1,18 +1,13 @@
 //Busca os estados e as cidades no banco para preencher os selects
-// var estados_cidades = {};
-// firebase.database().ref('/estados-consulta').once('value').then(function(snapshot){
-//     estados_cidades = snapshot.val();   
-
-//     for(var i = 0; i < estados_cidades.length; i++){
-//         $("#selectEstadoPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
-//         $("#selectEstadoChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
-//     }     
-// });
-
-
+var estados_cidades = {};
 var ultimoNumero = 0;
 
 $(document).ready(function (){
+
+    var cidadespartida = document.getElementById("selectCidadePartida");
+    var cidadesChegada = document.getElementById("selectCidadeChegada");
+    var selectEstadoPartida = document.getElementById("selectEstadoPartida");
+    var selectEstadoChegada = document.getElementById("selectEstadoChegada"); 
 
     // ADD novo Estado-cidade na sessão de partida
     $("#buttonAdicionarCidadePartida").on("click",function (){
@@ -96,12 +91,14 @@ $(document).ready(function (){
     });
 
     // Adicionar cidades e estados nos selects
-    
-    var cidadespartida = document.getElementById("selectCidadePartida");
-    var cidadesChegada = document.getElementById("selectCidadeChegada");
-    var selectEstadoPartida = document.getElementById("selectEstadoPartida");
-    var selectEstadoChegada = document.getElementById("selectEstadoChegada");
-    
+        firebase.database().ref('/estados-consulta').once('value').then(function(snapshot){
+        estados_cidades = snapshot.val();   
+
+        for(var i = 0; i < estados_cidades.length; i++){
+            $("#selectEstadoPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
+            $("#selectEstadoChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
+        }     
+    });   
 
     $("#selectEstadoPartida").on("change",function(){
         
@@ -127,5 +124,7 @@ $(document).ready(function (){
             }
         }
 
-    });    
+    });   
+    
+     
 });
