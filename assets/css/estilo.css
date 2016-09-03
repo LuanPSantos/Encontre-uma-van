@@ -152,17 +152,17 @@ body{
     padding: 20px;
 }
 
-.selectEstadosPartida, .selectCidadesPartida, .selectEstadosChegada, .selectCidadesChegada, .selectEscolasDestino{
+#selectEstadosPartida, #selectCidadesPartida, #selectEstadosChegada, #selectCidadesChegada, #selectEscolasDestino{
     padding: 8px 24px 8px 16px;
     border: none;
     border-bottom: 2px solid #d2d2d2;
     outline: none;
 }
 
-.selectEstadosPartida, .selectEstadosChegada{
+#selectEstadosPartida, #selectEstadosChegada{
     width: calc(30% - 2px);
 }
-.selectCidadesPartida, .selectCidadesChegada{
+#selectCidadesPartida, #selectCidadesChegada{
     width: calc(50% - 2px);
 }
 
@@ -329,10 +329,10 @@ body{
         width: 100%;
     }
 
-    .selectEstadosPartida, .selectEstadosChegada{
+    #selectEstadosPartida, #selectEstadosChegada{
         width: calc(32% - 2px);
     }
-    .selectCidadesPartida, .selectCidadesChegada{
+    #selectCidadesPartida, #selectCidadesChegada{
         width: calc(45% - 2px);
     }
     .divConteinerTextFieldPercursos{

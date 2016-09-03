@@ -1,23 +1,17 @@
-//Busca os estados e as cidades no banco para preencher os selects
-var estados_cidades = {};
+
 var ultimoNumero = 0;
 
 $(document).ready(function (){
-
-    var cidadespartida = document.getElementById("selectCidadePartida");
-    var cidadesChegada = document.getElementById("selectCidadeChegada");
-    var selectEstadoPartida = document.getElementById("selectEstadoPartida");
-    var selectEstadoChegada = document.getElementById("selectEstadoChegada"); 
 
     // ADD novo Estado-cidade na sessão de partida
     $("#buttonAdicionarCidadePartida").on("click",function (){
         var html = 
         '<div class="divConteinerEstadoCidadePartida">'+
-            '<select class="selectEstadosPartida margin-right-4px">'+
+            '<select id="selectEstadosPartida" class="selectEstadoPartida margin-right-4px">'+
                 '<option>Estado</option>'+
             '</select>'+
             
-            '<select class="selectCidadesPartida">'+
+            '<select id="selectCidadesPartida" class="selectCidadesPartida">'+
                 '<option>Cidade</option>'+
             '</select>'+
             '<button class="buttonRemoverConteinerEstadoCidadePartida mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'
@@ -31,15 +25,13 @@ $(document).ready(function (){
         $(this).parent().remove();
     });
 
-    // ADD nova escola na sessão de chegada
-    
+    // ADD nova escola na sessão de chegada    
     $("#sectionConteinerChegada").on("click",".buttonAdicionarEscolaDestino", function(){
         ultimoNumero++;
         var html = 
         '<div class="divConteinerEscolaDestino">'+
             '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ /* Grande problema aqui!!! */
                 '<input class="mdl-textfield__input mdl-fake-textfield__input" type="text" id="inputEscola'+ ultimoNumero +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
-                // '<label class="mdl-textfield__label mdl-fake-textfield__label" for="inputEscola'+ ultimoNumero +'">Escola destino...'+ ultimoNumero +'</label>'+
                 '<span class="bar"></span>'+
             '</div>'+
             '<button class="buttonRemoverEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
@@ -57,16 +49,15 @@ $(document).ready(function (){
     $("#buttonAdicionarEstadoCidadeChegada").on("click", function(){
         var html =
         '<div class="divConteinerEstadoCidadeEscolaPartida">'+
-            '<select class="selectEstadosChegada margin-right-4px">'+
+            '<select id="selectEstadosChegada" class="selectEstadoChegada margin-right-4px">'+
                 '<option>Estado</option>'+
             '</select>'+            
-            '<select class="selectCidadesChegada">'+
+            '<select id="selectCidadesChegada" class="selectCidadesChegada">'+
                 '<option>Cidade</option>'+
             '</select>'+
             '<button class="buttonRemoverEstadoCidadeChegada mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
             '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ /* Grande problema aqui!!! */
                 '<input class="mdl-textfield__input mdl-fake-textfield__input" type="text" id="inputEscola2'+ ultimoNumero +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
-                // '<label class="mdl-textfield__label mdl-fake-textfield__label" for="inputEscola'+ ultimoNumero +'">Escola destino...'+ ultimoNumero +'</label>'+
                 '<span class="bar"></span>'+
             '</div>'+
             '<button class="buttonAdicionarEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Escola</button>'+
@@ -86,45 +77,8 @@ $(document).ready(function (){
         $("#divLogin").fadeToggle();
     });
 
+    //Mostrar os detalhes da empresa nos resultados
     $(".pNomeEmpresas").on("click", function(){
         $(this).next().slideToggle();
-    });
-
-    // Adicionar cidades e estados nos selects
-        firebase.database().ref('/estados-consulta').once('value').then(function(snapshot){
-        estados_cidades = snapshot.val();   
-
-        for(var i = 0; i < estados_cidades.length; i++){
-            $("#selectEstadoPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
-            $("#selectEstadoChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
-        }     
-    });   
-
-    $("#selectEstadoPartida").on("change",function(){
-        
-        for(var i = 0; i < estados_cidades.length; i++){
-            if(estados_cidades[i].sigla == $("#selectEstadoPartida :selected").text()){
-                $("#selectCidadePartida").empty();
-                for(var j = 0; j < estados_cidades[i].cidades.length; j++){                    
-                    $("#selectCidadePartida").append('<option>'+ estados_cidades[i].cidades[j] +'</option>');                    
-                }
-            }
-        }
-
-    });
-
-    $("#selectEstadoChegada").on("change",function(){
-        
-        for(var i = 0; i < estados_cidades.length; i++){
-            if(estados_cidades[i].sigla == $("#selectEstadoChegada :selected").text()){
-                $("#selectCidadeChegada").empty();
-                for(var j = 0; j < estados_cidades[i].cidades.length; j++){                                        
-                    $("#selectCidadeChegada").append('<option>'+ estados_cidades[i].cidades[j] +'</option>');
-                }
-            }
-        }
-
-    });   
-    
-     
+    });      
 });

@@ -5,7 +5,7 @@
         <title>Encontre uma van</title>
         <link rel="icon" href="../assets/imagens/logo_100.png">
 
-        <!-- mobile -->
+        <!-- Mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- MDL -->
@@ -33,17 +33,22 @@
         <!-- Javascript -->
         <script src="../assets/javascript/jquery.js"></script>
         <script src="../assets/javascript/automatizacao.js"></script>
+        <script src="../assets/javascript/preencher_selects.js"></script>
     </head>  
     <body>
+        <!-- DIV layout -->
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             
+            <!-- barra de menu do topo -->
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
 
+                    <!-- Título no menu -->
                     <span id="spanTituloHeader" class="mdl-layout-title"><a id="aTituloHeader" href="index.html">Encontre uma van</a></span>
 
                     <div class="mdl-layout-spacer"></div>
 
+                    <!-- Conteiner para o botão de ENTRAR e CADASTRAR -->
                     <nav class="mdl-navigation">
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent buttonEntrar">Entrar</button>
                         <a class="mdl-navigation__link" href="cadastro.html">Cadastrar</a>
@@ -51,43 +56,56 @@
                 </div>            
             </header>
             
-            
+            <!-- Conteúdo da página -->
             <main  class="mdl-layout__content">
                 <div class="page-content">
+
                     <!-- Conteiner de LOGIN -->
                     <div class="mdl-grid">
                         <div id="divLogin" class="mdl-cell mdl-cell--3-col-desktop  mdl-cell--8-offset-desktop mdl-cell--4-col-tablet mdl-cell--3-offset-tablet mdl-cell--3-col-phone">
                             <form id="formLogin" class=" mdl-shadow--6dp">
+                                
+                                <!-- E-MAIL -->
                                 <div class="mdl-textfield mdl-js-textfield">                            
                                     <input class="mdl-textfield__input" type="email" id="emailLogin" autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                                     <label class="mdl-textfield__label" for="emailLogin">E-mail..</label>
                                 </div>
+
+                                <!-- SENHA -->
                                 <div class="mdl-textfield mdl-js-textfield">                             
                                     <input class="mdl-textfield__input" type="password" id="senhaLogin" autocomplete="off">
                                     <label class="mdl-textfield__label" for="senhaLogin">Senha...</label>
                                 </div>
+
+                                <!-- Botão de enviar -->
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="buttonLogin">Entrar</button>
                             </form>
                         </div>
                     </div>
-                    <div class="mdl-grid">
+                    <!-- Fim conteiner de LOGIN -->
+                    
+                    <!-- Título e subtítulo da página -->
+                    <div class="mdl-grid">                        
                         <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--8-col-tablet">
                             <h1 id="h1Titulo">Encontre Uma Van</h1>
                             <h5 id="h5Subtitulo">De onde você quer sair, para onde você quer chegar.</h5>
                         </div>
                     </div>
+
+                    <!-- conteiner dos inputs de busca -->
                     <div class="mdl-grid">
                         <section class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet">
                             <form id="formBusca" class="mdl-shadow--4dp">                              
                                 
+                                <!-- Conteiner Estado-Cidade -->
                                 <div class="mdl-select-conteiner--estados-cidades">
                                     <!-- Estados PARTIDA -->
-                                    <select id="selectEstadoPartida" class="mdl-select--personalizado">
+                                    <select id="selectEstadoPartida" class="mdl-select--personalizado selectEstadoPartida">
                                         <option>Estado</option>
                                     </select>                               
 
                                     <!-- Cidades PARTIDA -->                                
-                                    <select id="selectCidadePartida" class="mdl-select--personalizado">
+                                    <select id="selectCidadePartida" class="mdl-select--personalizado selectCidadePartida">
                                         <option>Cidade de partida</option>
                                     </select>
                                 </div>   
@@ -100,12 +118,12 @@
                                 
                                 <div class="mdl-select-conteiner--estados-cidades">
                                     <!-- Estados CHEGADA -->
-                                    <select id="selectEstadoChegada" class="mdl-select--personalizado">
+                                    <select id="selectEstadoChegada" class="mdl-select--personalizado selectEstadoChegada">
                                         <option>Estado</option>
                                     </select>
 
                                     <!-- Cidades CHEGADA -->
-                                    <select id="selectCidadeChegada" class="mdl-select--personalizado">
+                                    <select id="selectCidadeChegada" class="mdl-select--personalizado selectCidadeChegada">
                                         <option>Cidade de chegada</option>
                                     </select>
                                 </div>
@@ -117,23 +135,46 @@
                             </form>
                         </section>
                     </div>
+                    <!-- Fim conteiner dos inputs de busca -->
+
+                    <!-- Propaganda -->
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--3-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet" id="divPropaganda">
                             <img src="../assets/imagens/coca-cola.png" id="imgPropaganda">
                         </div>
                     </div>
+
+                    <!-- Conteiner dos resultados -->
                     <div class="mdl-grid">
                         <section class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet">
+
+                            <!-- Barra com texto 'Resultados' -->
                             <h3 id="h3Resultados" class="mdl-shadow--4dp mdl-color--primary">Resultados</h3> 
+
                             <!-- Uma empresa da pesquisa -->
                             <article class="articleEmpresa mdl-shadow--4dp">
+
+                                <!-- Nome da empresa -->
                                 <h5 class="pNomeEmpresas">Empresa</h5>
+
+                                <!-- Conteiner dos dados escondidos da empresa -->
                                 <div class="divDadosEmpresas">
+                                    <!-- Texto sobre a empresa -->
                                     <p class="pSobreEmpresa">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Aliquam erat volutpat. Nunc auctor. Mauris pretium quam et urna. Fusce nibh. Duis risus. Curabitur sagittis hendrerit</p>
+
+                                    <!-- Mensalidade -->
                                     <p class="pMensalidade">R$ 250,00 <span class="pPorMes"> por mês</span></p>
+
+                                    <!-- Telefone -->
                                     <p class="pTelefoneEmpresa">(00) 99999999</p><i></i>
+
+                                    <!-- Celular -->
                                     <p class="pCelularEmpresa">(00) 99999999</p><i></i>
+
+                                    <!-- Facebook -->
                                     <p class="pFacebookEmpresa">facebook.com/empresa</p><i></i>
+
+                                    <!-- E-mail -->
                                     <p class="pEmailEmpresa">exemplo@exemplo.com</p><i></i>                        
                                 </div>    
                             </article>   
@@ -213,18 +254,28 @@
                             </article> 
                         </section>
                     </div>
+                    <!-- Fim conteiner resultados -->
+
+                    <!-- Rodapé -->
                     <footer class="mdl-mini-footer">
                         <div class="mdl-mini-footer__left-section">
+                            <!-- Desenvolvedora -->
                             <div class="mdl-logo">EZ Solutions</div>
                             <ul class="mdl-mini-footer__link-list">
+
+                                <!-- Facebook da desenvolvedora -->
                             <li><a href="#">Facebook</a></li>
+
+                            <!-- Link para a página 'nosso time' -->
                             <li><a href="time.html">Team</a></li>
                             </ul>
                         </div>
                     </footer>
+                    <!-- Rodapé -->
                 </div>
             </main>            
         </div>
     </body> 
+    <!-- Script principal -->
     <script src="../assets/javascript/principal.js"></script> 
 </html>

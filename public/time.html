@@ -5,7 +5,7 @@
         <title>Encontre uma van</title>
         <link rel="icon" href="../assets/imagens/logo_100.png">
 
-        <!-- mobile -->
+        <!-- Mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- MDL -->
@@ -35,45 +35,62 @@
         <script src="../assets/javascript/automatizacao.js"></script>
     </head>  
     <body>
+        <!-- DIV layout -->
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             
+            <!-- barra de menu no topo -->
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
 
+                    <!-- Título no menu -->
                     <span id="spanTituloHeader" class="mdl-layout-title"><a id="aTituloHeader" href="index.html">Encontre uma van</a></span>
 
                     <div class="mdl-layout-spacer"></div>
 
+                    <!-- Conteiner para o botão de ENTRAR e CADASTRAR -->
                     <nav class="mdl-navigation">
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent buttonEntrar">Entrar</button>
                         <a class="mdl-navigation__link" href="cadastro.html">Cadastrar</a>
                     </nav>
                 </div>            
-            </header>           
+            </header>  
+
+            <!-- Conteúdo da página -->         
             <main  class="mdl-layout__content">
                 <div class="page-content">
+
                     <!-- Conteiner de LOGIN -->
                     <div class="mdl-grid">
                         <div id="divLogin" class="mdl-cell mdl-cell--3-col-desktop  mdl-cell--8-offset-desktop mdl-cell--4-col-tablet mdl-cell--3-offset-tablet mdl-cell--3-col-phone">
                             <form id="formLogin" class=" mdl-shadow--6dp">
+                                
+                                <!-- E-MAIL -->
                                 <div class="mdl-textfield mdl-js-textfield">                            
                                     <input class="mdl-textfield__input" type="email" id="emailLogin" autocomplete="off" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                                     <label class="mdl-textfield__label" for="emailLogin">E-mail..</label>
                                 </div>
+
+                                <!-- SENHA -->
                                 <div class="mdl-textfield mdl-js-textfield">                             
                                     <input class="mdl-textfield__input" type="password" id="senhaLogin" autocomplete="off">
                                     <label class="mdl-textfield__label" for="senhaLogin">Senha...</label>
                                 </div>
+
+                                <!-- Botão de enviar -->
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="buttonLogin">Entrar</button>
                             </form>
                         </div>
                     </div>
-                    <!-- FIM -->
+                    <!-- Fim conteiner de LOGIN -->
+
+                    <!-- Título da página -->
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--8-col-tablet">
                             <h1 id="h1Titulo">Nossa Equipe</h1>
                         </div>
                     </div>
+
+                    <!-- Texto sobre a emrpesa que desenvolveu o site-->
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--2-offset-desktop mdl-cell--8-col-tablet">
                             <P>
@@ -81,24 +98,54 @@
                             </P>
                         </div>
                     </div>
+
+                    <!-- Conteiner dos dados dos integrantes -->
                     <div class="mdl-grid divIntegrantes">
+
+                        <!-- Integrante 1 -->
                         <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--2-offset-desktop mdl-cell--8-col-tablet">              
+                            
+                            <!-- FOTO -->
                             <figure><img src="../assets/imagens/FOTO.jpg" class="imgFotoTime"></figure>
+                            
+                            <!-- NOME -->                            
                             <span class="spanNomeTime">Ana Caroline Gallinari</span><br>
+                            
+                            <!-- SOBRE -->
                             <span class="spanTextoTime">é quebrar a E Corp e o modelo econômico atual, por isso interrompeu</span><br>
+                            
+                            <!-- E-MAIL -->
                             <span class="spanEmailTime">Email: ana@ana.com</span>
                         </div>
-                        <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--1-offset-desktop mdl-cell--8-col-tablet">              
+                        <!-- Integrante 2 -->
+                        <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--2-offset-desktop mdl-cell--8-col-tablet">              
+                            
+                            <!-- FOTO -->
                             <figure><img src="../assets/imagens/FOTO.jpg" class="imgFotoTime"></figure>
+                            
+                            <!-- NOME -->                            
                             <span class="spanNomeTime">Ana Caroline Gallinari</span><br>
+                            
+                            <!-- SOBRE -->
                             <span class="spanTextoTime">é quebrar a E Corp e o modelo econômico atual, por isso interrompeu</span><br>
-                            <span class="spanEmailTime">E-mail: ana@ana.com</span>
+                            
+                            <!-- E-MAIL -->
+                            <span class="spanEmailTime">Email: ana@ana.com</span>
                         </div>
-                        <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--1-offset-desktop mdl-cell--8-col-tablet">              
-                           <figure><img src="../assets/imagens/FOTO.jpg" class="imgFotoTime"></figure>
+                        <!-- Integrante 3 -->
+                        <div class="mdl-cell mdl-cell--2-col-desktop mdl-cell--2-offset-desktop mdl-cell--8-col-tablet">              
+                            
+                            <!-- FOTO -->
+                            <figure><img src="../assets/imagens/FOTO.jpg" class="imgFotoTime"></figure>
+                            
+                            <!-- NOME -->                            
                             <span class="spanNomeTime">Ana Caroline Gallinari</span><br>
+                            
+                            <!-- SOBRE -->
                             <span class="spanTextoTime">é quebrar a E Corp e o modelo econômico atual, por isso interrompeu</span><br>
-                            <span class="spanEmailTime">E-mail: ana@ana.com</span>
+                            
+                            <!-- E-MAIL -->
+                            <span class="spanEmailTime">Email: ana@ana.com</span>
                         </div>
                     </div>
                     <!-- FOOTER -->
