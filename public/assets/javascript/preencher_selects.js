@@ -14,30 +14,30 @@ $(document).ready(function(){
 
         for(var i = 0; i < estados_cidades.length; i++){
             
-            $(".selectEstadoPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
-            $(".selectEstadoChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
+            $(".selectEstadosPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
+            $(".selectEstadosChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
         }     
     });   
 
-    $(".selectEstadoPartida").on("change",function(){
+    $(".selectEstadosPartida").on("change",function(){
         
         for(var i = 0; i < estados_cidades.length; i++){
-            if(estados_cidades[i].sigla == $(".selectEstadoPartida :selected").text()){
-                $(".selectCidadePartida").empty();
+            if(estados_cidades[i].sigla == $(".selectEstadosPartida :selected").text()){
+                $(".selectCidadesPartida").empty();
                 for(var j = 0; j < estados_cidades[i].cidades.length; j++){                    
-                    $(".selectCidadePartida").append('<option>'+ estados_cidades[i].cidades[j] +'</option>');                    
+                    $(".selectCidadesPartida").append('<option>'+ estados_cidades[i].cidades[j] +'</option>');                    
                 }
             }
         }
     });
 
-    $(".selectEstadoChegada").on("change",function(){
+    $(".selectEstadosChegada").on("change",function(){
         
         for(var i = 0; i < estados_cidades.length; i++){
-            if(estados_cidades[i].sigla == $(".selectEstadoChegada :selected").text()){
-                $(".selectCidadeChegada").empty();
+            if(estados_cidades[i].sigla == $(".selectEstadosChegada :selected").text()){
+                $(".selectCidadesChegada").empty();
                 for(var j = 0; j < estados_cidades[i].cidades.length; j++){                                        
-                    $(".selectCidadeChegada").append('<option>'+ estados_cidades[i].cidades[j] +'</option>');
+                    $(".selectCidadesChegada").append('<option>'+ estados_cidades[i].cidades[j] +'</option>');
                 }
             }
         }
