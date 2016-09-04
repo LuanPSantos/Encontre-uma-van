@@ -1,35 +1,40 @@
 body{
     background-color: #F1F1F1;
 }
-/* index */
+
+/* LOGIN ============================ */
 #divLogin{
     position: fixed;
     z-index: 3;
     display: none;
 }
 
-#aTituloHeader{
-    color: white;
-    text-decoration: none;
-}
 #formLogin{
     padding: 20px;  
     background: white; 
 }
 
+/* ================================= */
+
+/* HEADER ========================== */
+#aTituloHeader{
+    color: white;
+    text-decoration: none;
+}
+/* ================================= */
+
+/* TITULO E SUBTITULO ============== */
 #h1Titulo, #h5Subtitulo{
     text-align: center;
 }
+/* ================================= */
 
-#h1Titulo{
-    /*font-size: 3em;*/
-}
-
-
+/* CONTEINER BUSCAR ================ */
 #formBusca{
     background-color: white;
     padding: 20px;
 }
+
 .mdl-select-conteiner--estados-cidades{
     width: 100%;
     margin: 0px;
@@ -55,10 +60,6 @@ body{
     width: 100%;
 }
 
-.divConteinerTextFieldPercursos{
-    width: 80%;
-}
-
 .divConteinerBotaoBuscar{
     text-align: center;
     width: 100%;
@@ -67,15 +68,18 @@ body{
 #buttonBuscar{
     margin-top: 25px;
 }
+/* ===================================== */
 
+/* PROPAGANDA ========================== */
 #divPropaganda{
     text-align: center;
 }
 #imgPropaganda{
     width: 100%;
 }
+/* ===================================== */
 
-
+/* RESULTADOS ==========================*/
 #h3Resultados{
     text-align: center;
     color: white;
@@ -146,31 +150,38 @@ body{
 .pEmailEmpresa{
     border-bottom: 1px solid red;
 }
+/* ========================================== */
 
-/* cadastro percursos*/
+/* CADASTRO PERCURSOS ======================= */
 .sectionConteinerCadastro{
     padding: 20px;
 }
 
-#selectEstadosPartida, #selectCidadesPartida, #selectEstadosChegada, #selectCidadesChegada, #selectEscolasDestino{
+.divConteinerTextFieldPercursos{
+    width: 80%;
+}
+
+/* FUNCIONA PARA TODOS OS SELECTS DE ESTADO E CIDADE */
+.selectEstadosPartida, .selectCidadesPartida, .selectEstadosChegada, .selectCidadesChegada, .selectEscolasDestino{
     padding: 8px 24px 8px 16px;
     border: none;
     border-bottom: 2px solid #d2d2d2;
     outline: none;
 }
 
-#selectEstadosPartida, #selectEstadosChegada{
+.selectEstadosPartida, .selectEstadosChegada{
     width: calc(30% - 2px);
+    
 }
-#selectCidadesPartida, #selectCidadesChegada{
+.selectCidadesPartida, .selectCidadesChegada{
     width: calc(50% - 2px);
 }
+/* ------------------- */
 
 .margin-right-4px{
     margin-top: 10px;
     margin-right: 4px;
 }
-
 
 .buttonRemoverConteinerEstadoCidadePartida{
     margin-left: 10px;
@@ -185,7 +196,6 @@ body{
 }
 
 .buttonAdicionarEscolaDestino{
-    /*float: right;*/
     margin-top: 10px;
 }
 
@@ -217,7 +227,7 @@ body{
     background-color: white;
 }
 
-/*Cadastro*/
+/* CADASTRO =============================== */
  .conteinerInputs{
      padding: 20px;   
      background-color: white;  
@@ -279,8 +289,8 @@ body{
     width: 50%;
 }
 /*FIM EFEITO MATERIAL DESIGN NAS ESCOLAS DESTINO */
-/*Pagina Time*/
 
+/* PAGINA TIME ===================================*/
 .imgFotoTime{
     width: 100%;
     border-radius: 50%;
@@ -309,6 +319,9 @@ body{
     margin-bottom: 25px;
 }
 
+/* ============================================ */
+
+/* AJUSTES PARA OS SMARTPHONES*/
 @media only screen and (max-width: 415px){
     #h1Titulo{
         margin-top: -10px;
@@ -329,14 +342,13 @@ body{
         width: 100%;
     }
 
-    #selectEstadosPartida, #selectEstadosChegada{
+    .selectEstadosPartida, .selectEstadosChegada{
         width: calc(32% - 2px);
     }
-    #selectCidadesPartida, #selectCidadesChegada{
+    .selectCidadesPartida, .selectCidadesChegada{
         width: calc(45% - 2px);
     }
     .divConteinerTextFieldPercursos{
-    width: 77%;
-}
-
+        width: 77%;
+    }
 }

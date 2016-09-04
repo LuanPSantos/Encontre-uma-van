@@ -41,6 +41,7 @@ function logar(emailLogin, senhaLogin){
 
 if(botaoLogin != null){
     botaoLogin.onclick = function (event){
+        //window.location.assign("perfil.html");
         //event.preventDefault();
         if(formLogin != null){
             formLogin.onsubmit = function(e){
@@ -53,6 +54,9 @@ if(botaoLogin != null){
 
                 document.getElementById("emailLogin").value = '';
                 document.getElementById("senhaLogin").value = '';
+
+                //window.location.href = "perfil.html";
+                window.location.assign("perfil.html");
             };
         }
     }
@@ -96,6 +100,7 @@ function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, senhaEmpresa, facebook
 
 if(botaoCadastrar != null){
     botaoCadastrar.onclick = function (event){
+        //window.location.assign("cadastro_percursos.html");
         //event.preventDefault();
         if(formCadastrar != null){
             formCadastrar.onsubmit = function(e){
@@ -114,6 +119,9 @@ if(botaoCadastrar != null){
 
                 cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 
                             telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
+
+                //window.location.href = "perfil.html";
+                window.location.assign("cadastro_percursos.html");
             }
         }
     }
