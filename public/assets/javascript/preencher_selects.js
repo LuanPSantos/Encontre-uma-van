@@ -11,7 +11,7 @@ $(document).ready(function(){
     // Adicionar cidades e estados nos selects
     firebase.database().ref('/estados-consulta').once('value').then(function(snapshot){
         estados_cidades = snapshot.val();   
-        alert("Dropdown Estados foi preenchido!");
+        console.log("Dropdown Estados foi preenchido!");
         for(var i = 0; i < estados_cidades.length; i++){
             
             $(".selectEstadosPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');

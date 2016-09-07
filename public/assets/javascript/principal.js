@@ -34,9 +34,7 @@ function logar(emailLogin, senhaLogin){
         alert("ERRO-login: " + errorMessage);
     });
 
-    
-    $("#divLogin").fadeOut();
-    
+    $("#divLogin").fadeOut(); 
 }
 
 if(botaoLogin != null){
@@ -55,7 +53,7 @@ if(botaoLogin != null){
                 document.getElementById("emailLogin").value = '';
                 document.getElementById("senhaLogin").value = '';
 
-                window.location.assign("perfil.html");
+               // window.location.assign("perfil.html");
             };
         }
     }
@@ -63,8 +61,7 @@ if(botaoLogin != null){
 // ==============================================================================================
 
 // Funções para CADASTRAR =======================================================================
-function cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 
-                    telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa){
+function cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa){
 
     firebase.auth().createUserWithEmailAndPassword(emailEmpresa, senhaEmpresa).catch(function(error) {
         // Handle Errors here.
@@ -75,12 +72,11 @@ function cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa,
     }).then(function (){
         logar(emailEmpresa, senhaEmpresa);
 
-        atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
+        atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa,telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
     });    
 }
 
-function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa, 
-                    telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa){
+function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa,telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa){
     
     var idEmpresa = firebase.auth().currentUser.uid;
 
@@ -115,11 +111,10 @@ if(botaoCadastrar != null){
 
                 e.preventDefault();
 
-                cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 
-                            telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
+                cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
 
                 //window.location.href = "perfil.html";
-                window.location.assign("cadastro_percursos.html");
+                //window.location.assign("cadastro_percursos.html");
             }
         }
     }
@@ -127,19 +122,43 @@ if(botaoCadastrar != null){
 
 //Cadastrar PERCURSOS
 function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestino){
-    alert("como vai?");
+    
     //var empresa = [idEmpresa];
-
+    var empresasID = [];
+    var updates = {};
     for(var i = 0; i < estadosPartida.length; i++){
-        //Adiciona o id da empresa em cada estado-cidade que ela tem como ponto de partida
-        firebase.database().ref('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]).set(idEmpresa);
-    }
+        
+        firebase.database().ref('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]).once('value').then(function(snapshot){
+            var temp;
+            if( snapshot.val() != null){
+                for(var y = 0; y < snapshot.val().length; y++){
+                    empresasID[/*i,*/y] = snapshot.val()[y];
+                    temp = y;
+                }
+                empresasID[/*i,*/++temp] = idEmpresa; 
+            }else{
+                empresasID[0] = idEmpresa;
+            }
 
-    var escolas = escolasDestino;
-    for(var i = 0; i < escolasDestino.length; i++){
-        //Verificar quais escolas sao de quais cidades (talvez matriz)
-        firebase.database().ref('/empresas/' + idEmpresa + '/cidades/'+ cidadesChegada[i] + '/escolas/').set(escolas);
-    }
+            console.log(empresasID[0]);                       
+        });
+
+        console.log('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]);
+        firebase.database().ref('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]).set(empresasID);  
+
+        //console.log('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]);
+        //updates['/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]] = empresasID;  
+            
+    }   
+    //Adiciona o id da empresa em cada estado-cidade que ela tem como ponto de partida
+    // firebase.database().ref().update({updates});
+
+    // var escolas = {};
+    // escolas = escolasDestino;
+    // for(var i = 0; i < cidadesChegada.length; i++){
+    //     //Verificar quais escolas sao de quais cidades (talvez matriz)
+    //     firebase.database().ref('/empresas/' + idEmpresa + '/cidades/'+ cidadesChegada[i] + '/escolas/').set(escolas);
+    // }
 }
 if(botaoCadastrarPercursoEmpresa != null){
     botaoCadastrarPercursoEmpresa.onclick = function(){
@@ -148,39 +167,66 @@ if(botaoCadastrarPercursoEmpresa != null){
                 formCadastrarPercursos.onsubmit = function(e){
                 e.preventDefault();
                 
-                // var escolas = {};
-                // firebase.database().ref('/empresas/'+idEmpresa).once('value').then(function(snapshot){
-                //     escolas = snapshot.val().escolas;
-                //     alert(escolas);
-                // });
+                // var cidadesJaCadastradas = [];  
+                // var escolasJaCadastradas = [];
+                var estadosPartida = [];
+                var cidadesPartida = [];
+                var estadosChegada = [];
+                var cidadesChegada = [];
+                var escolasDestino = [];
 
                 var idEmpresa = firebase.auth().currentUser.uid;
-                var estadosPartida = {};
-                var cidadesPartida = {};
-                var estadosChegada = {};
-                var cidadesChegada = {};
-                var escolasDestino = {};
-
                 var estadosPartidaE = document.getElementsByClassName("selectEstadosPartida");
                 var cidadesPartidaE = document.getElementsByClassName("selectCidadesPartida");
                 var estadosChegadaE = document.getElementsByClassName("selectEstadosChegada");
                 var cidadesChegadaE = document.getElementsByClassName("selectCidadesChegada");
                 var escolasDestinoE = document.getElementsByClassName("selectEscolasDestino");
 
+                // firebase.database().ref('/empresas/'+idEmpresa+'/cidades').once('value').then(function(snapshot){
+                //     var cidadesToString = {};
+                //     if(snapshot.val() != null){
+                //         cidadesToString = snapshot.val();
+
+                //         var i = 0;
+                //         for(cidade in cidadesToString){
+                //             cidadesJaCadastradas[i] = (cidade);
+                //             i++;
+                //         }
+                        
+                //         i = 0;
+                //         for(i = 0; i < cidadesJaCadastradas.length; i++){                            
+                //             //alert();
+                //             firebase.database().ref('/empresas/'+idEmpresa+'/cidades/'+cidadesJaCadastradas[i]+'/escolas').once('value').then(function(snapshot){
+                //                 escolasJaCadastradas[i] = snapshot.val();
+                //                 //console.log(escolasJaCadastradas[i]);                                                               
+                //             });
+                //         }                        
+                //     }
+                    
+                // });
+
                 for(var i = 0; i < estadosPartidaE.length; i++){
                     estadosPartida[i] = estadosPartidaE[i].value;
                     cidadesPartida[i] = cidadesPartidaE[i].value;
-                    alert("Partida - " + estadosPartida[i] + " - " + cidadesPartida[i]);
+                    //alert("Partida - " + estadosPartida[i] + " - " + cidadesPartida[i] + " - " + estadosPartida.length);
                 }
-                for(var i = 0; i < estadosPartidaE.length; i++){
+                for(var i = 0; i < estadosChegadaE.length; i++){
                     estadosChegada[i] = estadosChegadaE[i].value;
                     cidadesChegada[i] = cidadesChegadaE[i].value;
-                    alert("Chagada - " + estadosChegada[i] + " - " + cidadesChegada[i]);
+                    //alert("Chagada - " + estadosChegada[i] + " - " + cidadesChegada[i] + " - " + estadosChegada.length);
                 }
                 for(var i = 0; i < escolasDestinoE.length; i++){
                     escolasDestino[i] = escolasDestinoE[i].value;
-                    alert("Escolas - " + escolasDestino[i]);
+                    //alert("Escolas - " + escolasDestino[i] + " - " + escolasDestino.length);
                 }
+
+                // if(escolas != null && escolas != ""){
+                //     for(var i = 0; i < escolas.length; i++){
+                //         escolasDestino[escolasDestino.length + i] = escolas[i];
+                //     }
+                    
+                //     //alert("E O Q: " + escolasDestino[0] + " - " + escolasDestino[escolasDestino.length - 1]);
+                // }
                 
                 cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestino);
             }
