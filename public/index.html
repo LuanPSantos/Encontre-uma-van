@@ -97,37 +97,41 @@
                         <section class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-offset-desktop mdl-cell--6-col-tablet mdl-cell--1-offset-tablet">
                             <form id="formBusca" class="mdl-shadow--4dp">                              
                                 
-                                <!-- Conteiner Estado-Cidade -->
-                                <div class="mdl-select-conteiner--estados-cidades">
-                                    <!-- Estados PARTIDA -->
-                                    <select id="selectEstadoPartida" class="mdl-select--personalizado selectEstadosPartida">
-                                        <option>Estado</option>
-                                    </select>                               
+                                <!-- CONTEINER SELECTS -->
+                                <section class="sectionConteinerSelects">
+                                    <!-- Conteiner Estado-Cidade -->
+                                    <div class="mdl-select-conteiner--estados-cidades">
+                                        <!-- Estados PARTIDA -->
+                                        <select id="selectEstadoPartida" class="mdl-select--personalizado selectEstadosPartida">
+                                            <option>Estado</option>
+                                        </select>                               
 
-                                    <!-- Cidades PARTIDA -->                                
-                                    <select id="selectCidadePartida" class="mdl-select--personalizado selectCidadesPartida">
-                                        <option>Cidade de partida</option>
-                                    </select>
-                                </div>   
-
+                                        <!-- Cidades PARTIDA -->                                
+                                        <select id="selectCidadePartida" class="mdl-select--personalizado selectCidadesPartida">
+                                            <option>Cidade de partida</option>
+                                        </select>
+                                    </div>   
+                                </section>
                                 <!-- Escola DESEJADA -->
                                 <div id="divConteinerTextField" class="mdl-textfield mdl-js-textfield">
                                     <input class="mdl-textfield__input" type="text" id="inputEscola" pattern="[a-zA-Z\s]+$">
                                     <label class="mdl-textfield__label" for="inputEscola">Escola desejada...</label>
                                 </div>
                                 
-                                <div class="mdl-select-conteiner--estados-cidades">
-                                    <!-- Estados CHEGADA -->
-                                    <select id="selectEstadoChegada" class="mdl-select--personalizado selectEstadosChegada">
-                                        <option>Estado</option>
-                                    </select>
+                                <!-- CONTEINER SELECTS -->
+                                <section class="sectionConteinerSelects">
+                                    <div class="mdl-select-conteiner--estados-cidades">
+                                        <!-- Estados CHEGADA -->
+                                        <select id="selectEstadoChegada" class="mdl-select--personalizado selectEstadosChegada">
+                                            <option>Estado</option>
+                                        </select>
 
-                                    <!-- Cidades CHEGADA -->
-                                    <select id="selectCidadeChegada" class="mdl-select--personalizado selectCidadesChegada">
-                                        <option>Cidade de chegada</option>
-                                    </select>
-                                </div>
-                                
+                                        <!-- Cidades CHEGADA -->
+                                        <select id="selectCidadeChegada" class="mdl-select--personalizado selectCidadesChegada">
+                                            <option>Cidade de chegada</option>
+                                        </select>
+                                    </div>
+                                </section>
                                 <!-- Botao BUSCAR -->
                                 <div class="divConteinerBotaoBuscar">
                                     <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="buttonBuscar">Buscar</button>

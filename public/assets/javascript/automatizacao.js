@@ -21,7 +21,11 @@ $(document).ready(function (){
             '<button class="buttonRemoverConteinerEstadoCidadePartida mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'
         '</div>';
 
-        $(this).before(html);      
+        $(this).before(html); 
+
+        for(var i = 0; i < estados_cidades.length; i++){            
+            $(this).prev().children(".selectEstadosPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
+        }     
     });
 
     // Remover Estado-cidade da sessão de partida
@@ -55,7 +59,7 @@ $(document).ready(function (){
         indexIdChegada++;
 
         var html =
-        '<div class="divConteinerEstadoCidadeEscolaPartida">'+
+        '<div class="divConteinerEstadoCidadeEscolaChegada">'+
             '<select id="selectEstadoChegada'+ indexIdChegada +'" class="selectEstadosChegada margin-right-4px">'+
                 '<option>Estado</option>'+
             '</select>'+            
@@ -71,6 +75,10 @@ $(document).ready(function (){
         '</div>';
 
         $(this).before(html);
+
+        for(var i = 0; i < estados_cidades.length; i++){            
+            $(this).prev().children(".selectEstadosChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
+        } 
     });
 
     // Remover estado-cidade-escola
