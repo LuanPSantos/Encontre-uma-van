@@ -22,7 +22,7 @@ var cidadesPartida = document.getElementsByClassName("selectCidadesPartida");
 var estadosChegada = document.getElementsByClassName("selectEstadosChegada");
 var cidadesChegada = document.getElementsByClassName("selectCidadesChegada");
 var escolasDestino = document.getElementsByClassName("selectEscolasDestino");
-var botaoCadastrarPercursoEmpresa = document.getElementById("buttonCadastrarPercursosEmpresa");
+var botaoCadastrarPercursoEmpresa = document.getElementById("buttonCadastroPercursosEmpresa");
 
 // Funções para LOGAR ===========================================================================
 function logar(emailLogin, senhaLogin){
@@ -55,7 +55,6 @@ if(botaoLogin != null){
                 document.getElementById("emailLogin").value = '';
                 document.getElementById("senhaLogin").value = '';
 
-                //window.location.href = "perfil.html";
                 window.location.assign("perfil.html");
             };
         }
@@ -80,7 +79,7 @@ function cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa,
     });    
 }
 
-function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, 
+function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa, 
                     telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa){
     
     var idEmpresa = firebase.auth().currentUser.uid;
@@ -88,7 +87,6 @@ function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, senhaEmpresa, facebook
     var dadosEmpresa = {        
         nome : nomeEmpresa,
         email : emailEmpresa,
-        senha : senhaEmpresa,
         facebook : facebookEmpresa,
         telefone : telefoneEmpresa,
         celular : celularEmpresa,
@@ -129,12 +127,12 @@ if(botaoCadastrar != null){
 
 //Cadastrar PERCURSOS
 function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestino){
+    alert("como vai?");
+    //var empresa = [idEmpresa];
 
-    var empresa = [idEmpresa];
-    // Falta recuperar os dados ja existente no caminho para quando usar o set nao apaga-los, mas regrava-los
     for(var i = 0; i < estadosPartida.length; i++){
         //Adiciona o id da empresa em cada estado-cidade que ela tem como ponto de partida
-        firebase.database().ref('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]).set(empresa);
+        firebase.database().ref('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]).set(idEmpresa);
     }
 
     var escolas = escolasDestino;
@@ -144,20 +142,46 @@ function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChe
     }
 }
 if(botaoCadastrarPercursoEmpresa != null){
-    botaoCadastrarPercursoEmpresa.onclick = function(event){
-        event.preventDefault();
-            if(formCadastrarPercursos != null){
-            formCadastrarPercursos.onsubmit = function(e){
+    botaoCadastrarPercursoEmpresa.onclick = function(){
+
+        if(formCadastrarPercursos != null){
+                formCadastrarPercursos.onsubmit = function(e){
+                e.preventDefault();
+                
+                // var escolas = {};
+                // firebase.database().ref('/empresas/'+idEmpresa).once('value').then(function(snapshot){
+                //     escolas = snapshot.val().escolas;
+                //     alert(escolas);
+                // });
 
                 var idEmpresa = firebase.auth().currentUser.uid;
-                var estadosPartida = ["São Paulo", "São Paulo"];
-                var cidadesPartida = ["Artur Nogueira", "Cosmópolis"];
-                var estadosChegada = ["São Paulo", "São Paulo"];
-                var cidadesChegada = ["Limeira", "Paulínia"];
-                var escolasDestino = ["Procotil", "Cotil", "Trajano"];
+                var estadosPartida = {};
+                var cidadesPartida = {};
+                var estadosChegada = {};
+                var cidadesChegada = {};
+                var escolasDestino = {};
 
-                e.preventDefault();
+                var estadosPartidaE = document.getElementsByClassName("selectEstadosPartida");
+                var cidadesPartidaE = document.getElementsByClassName("selectCidadesPartida");
+                var estadosChegadaE = document.getElementsByClassName("selectEstadosChegada");
+                var cidadesChegadaE = document.getElementsByClassName("selectCidadesChegada");
+                var escolasDestinoE = document.getElementsByClassName("selectEscolasDestino");
 
+                for(var i = 0; i < estadosPartidaE.length; i++){
+                    estadosPartida[i] = estadosPartidaE[i].value;
+                    cidadesPartida[i] = cidadesPartidaE[i].value;
+                    alert("Partida - " + estadosPartida[i] + " - " + cidadesPartida[i]);
+                }
+                for(var i = 0; i < estadosPartidaE.length; i++){
+                    estadosChegada[i] = estadosChegadaE[i].value;
+                    cidadesChegada[i] = cidadesChegadaE[i].value;
+                    alert("Chagada - " + estadosChegada[i] + " - " + cidadesChegada[i]);
+                }
+                for(var i = 0; i < escolasDestinoE.length; i++){
+                    escolasDestino[i] = escolasDestinoE[i].value;
+                    alert("Escolas - " + escolasDestino[i]);
+                }
+                
                 cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestino);
             }
         }  
