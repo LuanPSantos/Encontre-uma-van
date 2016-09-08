@@ -122,44 +122,16 @@ if(botaoCadastrar != null){
 
 //Cadastrar PERCURSOS
 function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestino){
-    
-    //var empresa = [idEmpresa];
-    var empresasID = [];
-    var updates = {};
+
     for(var i = 0; i < estadosPartida.length; i++){
-        
-        firebase.database().ref('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]).once('value').then(function(snapshot){
-            var temp;
-            if( snapshot.val() != null){
-                for(var y = 0; y < snapshot.val().length; y++){
-                    empresasID[/*i,*/y] = snapshot.val()[y];
-                    temp = y;
-                }
-                empresasID[/*i,*/++temp] = idEmpresa; 
-            }else{
-                empresasID[0] = idEmpresa;
-            }
-
-            console.log(empresasID[0]);                       
-        });
-
-        console.log('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]);
-        firebase.database().ref('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]).set(empresasID);  
-
-        //console.log('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]);
-        //updates['/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]] = empresasID;  
-            
-    }   
-    //Adiciona o id da empresa em cada estado-cidade que ela tem como ponto de partida
-    // firebase.database().ref().update({updates});
-
-    // var escolas = {};
-    // escolas = escolasDestino;
-    // for(var i = 0; i < cidadesChegada.length; i++){
-    //     //Verificar quais escolas sao de quais cidades (talvez matriz)
-    //     firebase.database().ref('/empresas/' + idEmpresa + '/cidades/'+ cidadesChegada[i] + '/escolas/').set(escolas);
-    // }
+        firebase.database().ref('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i] + '/'+idEmpresa).set(idEmpresa);
+    }
+     
+    for(var j = 0; j < estadosChegada.length; j++){
+        firebase.database().ref('/empresas/' + idEmpresa + '/cidades/' + cidadesChegada[j]).set(escolasDestino);
+    }
 }
+
 if(botaoCadastrarPercursoEmpresa != null){
     botaoCadastrarPercursoEmpresa.onclick = function(){
 
