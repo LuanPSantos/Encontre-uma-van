@@ -121,15 +121,26 @@ if(botaoCadastrar != null){
 }
 
 //Cadastrar PERCURSOS
-function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestino){
+function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestinoMatriz = [,]){
 
-    for(var i = 0; i < estadosPartida.length; i++){
-        firebase.database().ref('/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i] + '/'+idEmpresa).set(idEmpresa);
+    var update = {};
+    for(var i = 0; i < estadosPartida.length; i++){        
+        update['/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i] + '/' + idEmpresa] = idEmpresa;        
     }
+    firebase.database().ref(/*'/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]*/).update(update);
      
-    for(var j = 0; j < estadosChegada.length; j++){
-        firebase.database().ref('/empresas/' + idEmpresa + '/cidades/' + cidadesChegada[j]).set(escolasDestino);
+    update = {};
+
+    for(var i = 0; i < escolasDestinoMatriz.length; i++){
+        //console.log("Linha: " + escolasDestinoMatriz[i].length);
+        var escolas = [];
+        for(var j = 0; j < escolasDestinoMatriz[i].length; j++){
+            escolas[j] = escolasDestinoMatriz[i][j];
+            //console.log("Cidade: " + cidadesChegada[i] + " - " + escolas[j]);
+        }
+        update['/empresas/' + idEmpresa + '/cidades/' + cidadesChegada[i]] = escolas;
     }
+    firebase.database().ref(/*'/empresas/' + idEmpresa + '/cidades/' + cidadesChegada[j]*/).update(update);
 }
 
 if(botaoCadastrarPercursoEmpresa != null){
@@ -152,30 +163,49 @@ if(botaoCadastrarPercursoEmpresa != null){
                 var cidadesPartidaE = document.getElementsByClassName("selectCidadesPartida");
                 var estadosChegadaE = document.getElementsByClassName("selectEstadosChegada");
                 var cidadesChegadaE = document.getElementsByClassName("selectCidadesChegada");
-                var escolasDestinoE = document.getElementsByClassName("selectEscolasDestino");
+                //var escolasDestinoE = document.getElementsByClassName("selectEscolasDestino");
 
-                // firebase.database().ref('/empresas/'+idEmpresa+'/cidades').once('value').then(function(snapshot){
-                //     var cidadesToString = {};
-                //     if(snapshot.val() != null){
-                //         cidadesToString = snapshot.val();
+                var escolasDestinoMatriz = [,];
+                
+                for(var i = 0; i <= identificador; i++){
+                    var temp = document.getElementsByClassName("selectEscolasDestino id_" + i);
+                    var arraytemp = [];
+                    for(var j = 0; j < temp.length; j++){
+                         arraytemp[j] = temp[j].value;     
+                        //console.log('Escola['+i+','+j+'] : '+ escolasDestinoMatriz[i,j]);                   
+                    }    
+                    escolasDestinoMatriz[i] = arraytemp;             
+                }
 
-                //         var i = 0;
-                //         for(cidade in cidadesToString){
-                //             cidadesJaCadastradas[i] = (cidade);
-                //             i++;
-                //         }
+                // for(var i = 0; i <= identificador; i++){
+                //     var temp = document.getElementsByClassName("selectEscolasDestino id_" + i);
+                //     for(var j = 0; j < temp.length; j++){     
+                //         console.log('Escola['+i+','+j+'] : '+ escolasDestinoMatriz[i][j]);                   
+                //     }                    
+                // }
+
+                /*firebase.database().ref('/empresas/'+idEmpresa+'/cidades').once('value').then(function(snapshot){
+                    var cidadesToString = {};
+                    if(snapshot.val() != null){
+                        cidadesToString = snapshot.val();
+
+                        var i = 0;
+                        for(cidade in cidadesToString){
+                            cidadesJaCadastradas[i] = (cidade);
+                            i++;
+                        }
                         
-                //         i = 0;
-                //         for(i = 0; i < cidadesJaCadastradas.length; i++){                            
-                //             //alert();
-                //             firebase.database().ref('/empresas/'+idEmpresa+'/cidades/'+cidadesJaCadastradas[i]+'/escolas').once('value').then(function(snapshot){
-                //                 escolasJaCadastradas[i] = snapshot.val();
-                //                 //console.log(escolasJaCadastradas[i]);                                                               
-                //             });
-                //         }                        
-                //     }
+                        i = 0;
+                        for(i = 0; i < cidadesJaCadastradas.length; i++){                            
+                            //alert();
+                            firebase.database().ref('/empresas/'+idEmpresa+'/cidades/'+cidadesJaCadastradas[i]+'/escolas').once('value').then(function(snapshot){
+                                escolasJaCadastradas[i] = snapshot.val();
+                                //console.log(escolasJaCadastradas[i]);                                                               
+                            });
+                        }                        
+                    }
                     
-                // });
+                });*/
 
                 for(var i = 0; i < estadosPartidaE.length; i++){
                     estadosPartida[i] = estadosPartidaE[i].value;
@@ -187,24 +217,21 @@ if(botaoCadastrarPercursoEmpresa != null){
                     cidadesChegada[i] = cidadesChegadaE[i].value;
                     //alert("Chagada - " + estadosChegada[i] + " - " + cidadesChegada[i] + " - " + estadosChegada.length);
                 }
-                for(var i = 0; i < escolasDestinoE.length; i++){
+                /*for(var i = 0; i < escolasDestinoE.length; i++){
                     escolasDestino[i] = escolasDestinoE[i].value;
                     //alert("Escolas - " + escolasDestino[i] + " - " + escolasDestino.length);
                 }
 
-                // if(escolas != null && escolas != ""){
-                //     for(var i = 0; i < escolas.length; i++){
-                //         escolasDestino[escolasDestino.length + i] = escolas[i];
-                //     }
+                if(escolas != null && escolas != ""){
+                    for(var i = 0; i < escolas.length; i++){
+                        escolasDestino[escolasDestino.length + i] = escolas[i];
+                    }
                     
-                //     //alert("E O Q: " + escolasDestino[0] + " - " + escolasDestino[escolasDestino.length - 1]);
-                // }
+                    //alert("E O Q: " + escolasDestino[0] + " - " + escolasDestino[escolasDestino.length - 1]);
+                }*/
                 
-                cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestino);
+                cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestinoMatriz);
             }
         }  
     }
 }
-
-
-//============================================================================================

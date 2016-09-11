@@ -2,6 +2,7 @@
 var indexIdPartida = 0;
 var indexIdChegada = 0;
 var indexIdEscola = 0;
+var identificador = 0;
 
 $(document).ready(function (){
 
@@ -40,7 +41,7 @@ $(document).ready(function (){
         var html = 
         '<div class="divConteinerEscolaDestino">'+
             '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ /* Grande problema aqui!!! */
-                '<input class="mdl-textfield__input mdl-fake-textfield__input selectEscolasDestino" type="text" id="inputEscola'+ indexIdEscola +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
+                '<input class="mdl-textfield__input mdl-fake-textfield__input selectEscolasDestino id_'+ identificador +'" type="text" id="inputEscola'+ indexIdEscola +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
                 '<span class="bar"></span>'+
             '</div>'+
             '<button class="buttonRemoverEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
@@ -57,18 +58,18 @@ $(document).ready(function (){
     // ADD novo estado-cidade-escola na sessão de chegada
     $("#buttonAdicionarEstadoCidadeChegada").on("click", function(){
         indexIdChegada++;
-
+        identificador++;
         var html =
         '<div class="divConteinerEstadoCidadeEscolaChegada">'+
-            '<select id="selectEstadoChegada'+ indexIdChegada +'" class="selectEstadosChegada margin-right-4px">'+
+            '<select id="selectEstadoChegada'+ indexIdChegada +'" class="selectEstadosChegada id_'+ identificador +' margin-right-4px">'+
                 '<option>Estado</option>'+
             '</select>'+            
-            '<select id="selectCidadeChegada'+ indexIdChegada +'" class="selectCidadesChegada">'+
+            '<select id="selectCidadeChegada'+ indexIdChegada +'" class="selectCidadesChegada id_'+ identificador +'">'+
                 '<option>Cidade</option>'+
             '</select>'+
             '<button class="buttonRemoverEstadoCidadeChegada mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
-            '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ /* Grande problema aqui!!! */
-                '<input class="mdl-textfield__input mdl-fake-textfield__input selectEscolasDestino" type="text" id="inputEscola2'+ indexIdChegada +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
+            '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ 
+                '<input class="mdl-textfield__input mdl-fake-textfield__input selectEscolasDestino id_'+ identificador +'" type="text" id="inputEscola2'+ indexIdChegada +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
                 '<span class="bar"></span>'+
             '</div>'+
             '<button class="buttonAdicionarEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Escola</button>'+
