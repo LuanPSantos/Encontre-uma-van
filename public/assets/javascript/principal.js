@@ -17,11 +17,6 @@ var botaoCadastrar = document.getElementById("buttonCadastroEmpresa");
 
 //Cadastrar PERCURSOS
 var formCadastrarPercursos = document.getElementById("formCadastrarPercursos");
-var estadosPartida = document.getElementsByClassName("selectEstadosPartida");
-var cidadesPartida = document.getElementsByClassName("selectCidadesPartida");
-var estadosChegada = document.getElementsByClassName("selectEstadosChegada");
-var cidadesChegada = document.getElementsByClassName("selectCidadesChegada");
-var escolasDestino = document.getElementsByClassName("selectEscolasDestino");
 var botaoCadastrarPercursoEmpresa = document.getElementById("buttonCadastroPercursosEmpresa");
 
 // Funções para LOGAR ===========================================================================
@@ -125,22 +120,21 @@ function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChe
 
     var update = {};
     for(var i = 0; i < estadosPartida.length; i++){        
-        update['/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i] + '/' + idEmpresa] = idEmpresa;        
+        update['/estados/' + estadosPartida[i] + '/' + cidadesPartida[i] + '/' + idEmpresa] = idEmpresa;        
     }
-    firebase.database().ref(/*'/estados/' + estadosPartida[i] + '/cidades/' + cidadesPartida[i]*/).update(update);
+    firebase.database().ref().update(update);
      
     update = {};
-
+    var escolas = [];
     for(var i = 0; i < escolasDestinoMatriz.length; i++){
-        //console.log("Linha: " + escolasDestinoMatriz[i].length);
-        var escolas = [];
+
+        escolas = [];
         for(var j = 0; j < escolasDestinoMatriz[i].length; j++){
             escolas[j] = escolasDestinoMatriz[i][j];
-            //console.log("Cidade: " + cidadesChegada[i] + " - " + escolas[j]);
         }
-        update['/empresas/' + idEmpresa + '/cidades/' + cidadesChegada[i]] = escolas;
+        update['/empresas/' + idEmpresa + '/estados/' + estadosChegada[i] + '/' + cidadesChegada[i]] = escolas;
     }
-    firebase.database().ref(/*'/empresas/' + idEmpresa + '/cidades/' + cidadesChegada[j]*/).update(update);
+    firebase.database().ref().update(update);
 }
 
 if(botaoCadastrarPercursoEmpresa != null){
@@ -220,18 +214,37 @@ if(botaoCadastrarPercursoEmpresa != null){
                 /*for(var i = 0; i < escolasDestinoE.length; i++){
                     escolasDestino[i] = escolasDestinoE[i].value;
                     //alert("Escolas - " + escolasDestino[i] + " - " + escolasDestino.length);
-                }
-
-                if(escolas != null && escolas != ""){
-                    for(var i = 0; i < escolas.length; i++){
-                        escolasDestino[escolasDestino.length + i] = escolas[i];
-                    }
-                    
-                    //alert("E O Q: " + escolasDestino[0] + " - " + escolasDestino[escolasDestino.length - 1]);
                 }*/
+
                 
                 cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestinoMatriz);
             }
         }  
     }
+}
+//==================================================================================
+// PERFIL ==========================================================================
+function carregarDadosEmpresa(){
+    var nomeEmpresa = document.getElementById("inputNomeEmpresa");
+    var emailEmpresa = document.getElementById("inputEmailEmpresa");
+    var facebookEmpresa = document.getElementById("inputFacebookEmpresa");
+    var telefoneEmpresa = document.getElementById("inputTelefoneEmpresa");
+    var celularEmpresa = document.getElementById("inputCelularEmpresa");
+    var mensalidadeEmpresa = document.getElementById("inputMensalidadeEmpresa");
+    var sobreEmpresa = document.getElementById("textareaSobreEmpresa");
+    var idEmpresa = firebase.auth().currentUser.uid;
+
+    firebase.database().ref('/empresas/' + idEmpresa).once('value').then(function(snapshot){
+        var dados = snapshot.val();
+
+        nomeEmpresa.value = dados.nome;
+        emailEmpresa.value = dados.email;
+        facebookEmpresa.value = dados.facebook;
+        telefoneEmpresa.value = dados.telefone;
+        celularEmpresa.value = dados.celular;
+        mensalidadeEmpresa.value = dados.mensalidade;
+        sobreEmpresa.value = dados.sobre;
+
+
+    });
 }
