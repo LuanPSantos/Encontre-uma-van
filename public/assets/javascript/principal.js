@@ -75,8 +75,8 @@ function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa,telefo
     
     var idEmpresa = firebase.auth().currentUser.uid;
 
-    var dadosEmpresa = {        
-        nome : nomeEmpresa,
+    var dadosEmpresa = {      
+        nome : nomeEmpresa, 
         email : emailEmpresa,
         facebook : facebookEmpresa,
         telefone : telefoneEmpresa,
@@ -84,6 +84,7 @@ function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa,telefo
         mensalidade : mensalidadeEmpresa,
         sobre : sobreEmpresa    
     };
+
     return firebase.database().ref('/empresas/' + idEmpresa).update(dadosEmpresa);
 }
 
@@ -118,6 +119,37 @@ if(botaoCadastrar != null){
 //Cadastrar PERCURSOS
 function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestinoMatriz = [,]){
 
+    // var partida = 
+    // [
+    //     {
+    //         sigla:"SP",
+    //         cidades:
+    //         [
+    //             {
+    //                 nome: "cidade 1",
+    //                 empresas:
+    //                 [
+    //                     "empresa 1",
+    //                     "empresa 2"
+    //                 ]
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         sigla:"SP",
+    //         cidades:
+    //         [
+    //             {
+    //                 nome: "cidade 1",
+    //                 empresas:
+    //                 [
+    //                     "empresa 1",
+    //                     "empresa 2"
+    //                 ]
+    //             }
+    //         ]
+    //     }
+    // ];
     var update = {};
     for(var i = 0; i < estadosPartida.length; i++){        
         update['/estados/' + estadosPartida[i] + '/' + cidadesPartida[i] + '/' + idEmpresa] = idEmpresa;        
@@ -245,6 +277,34 @@ function carregarDadosEmpresa(){
         mensalidadeEmpresa.value = dados.mensalidade;
         sobreEmpresa.value = dados.sobre;
 
+        var estados = dados.estados;
+
+        
+
+        for(var i in estados){ 
+            $("#selectEstadoPartida").val(i);    
+            // indexIdPartida++;
+
+            // var html = 
+            // '<div class="divConteinerEstadoCidadePartida">'+
+            //     '<select id="selectEstadoPartida'+ indexIdPartida +'" class="selectEstadosPartida margin-right-4px">'+
+            //         '<option>'+ i +'</option>'+
+            //     '</select>'+
+                
+            //     '<select id="selectCidadePartida'+ indexIdPartida +'" class="selectCidadesPartida">'+
+            //         '<option>Cidade</option>'+
+            //     '</select>'+
+            //     '<button class="buttonRemoverConteinerEstadoCidadePartida mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'
+            // '</div>';
+
+            // $("#buttonAdicionarCidadePartida").before(html);
+            // $("#buttonAdicionarCidadePartida").prev().children(".selectEstadosPartida").val(i);
+            var cidade = estados[i];       
+            for(var j in cidade){
+                $("#selectCidadePartida").val(j);
+                console.log(i + " " + j + " " + cidade[j]);
+            }
+        }
 
     });
 }

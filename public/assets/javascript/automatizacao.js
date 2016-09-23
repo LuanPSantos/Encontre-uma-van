@@ -21,9 +21,10 @@ $(document).ready(function (){
             '</select>'+
             '<button class="buttonRemoverConteinerEstadoCidadePartida mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'
         '</div>';
-
+        
         $(this).before(html); 
 
+         
         for(var i = 0; i < estados_cidades.length; i++){            
             $(this).prev().children(".selectEstadosPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
         }     
