@@ -277,34 +277,56 @@ function carregarDadosEmpresa(){
         mensalidadeEmpresa.value = dados.mensalidade;
         sobreEmpresa.value = dados.sobre;
 
-        var estados = dados.estados;
+        var estados = dados.estados;        
+        var i = 0;
+        var primeiraCidade = true;
+        for(var estado in estados){
+            var cidades = estados[estado]; 
+                    
+            for(var cidade in cidades){
+                $(".selectEstadosChegada").val(estado).trigger("change");
 
-        
+                if(primeiraCidade){
+                    $(".selectCidadesChegada").val(cidade);
+                    var escolas = cidades[cidade];
+                    
+                    primeiraEscola = true;
+                    for(var escola in escolas){
+                        console.log("Estado: " + estado + " - " + cidade + " " + escolas[escola]);
+                        if(primeiraEscola){
+                            $(".selectEscolasDestino:eq(" +i + ")").val(escolas[escola]); 
+                            primeiraEscola = false;
+                        }else{
+                            $(".buttonAdicionarEscolaDestino").trigger("click");
+                            $(".selectEscolasDestino:eq(" +i + ")").val(escolas[escola]);                        
+                        }
+                        i++;
+                    }
+                    primeiraCidade = false;
+                }else{
+                    $("#buttonAdicionarEstadoCidadeChegada").trigger("click");
+                    $(".selectEstadosChegada").val(estado).trigger("change");
+                    $(".selectCidadesChegada").val(cidade);
+                    var escolas = cidades[cidade];
 
-        for(var i in estados){ 
-            $("#selectEstadoPartida").val(i);    
-            // indexIdPartida++;
-
-            // var html = 
-            // '<div class="divConteinerEstadoCidadePartida">'+
-            //     '<select id="selectEstadoPartida'+ indexIdPartida +'" class="selectEstadosPartida margin-right-4px">'+
-            //         '<option>'+ i +'</option>'+
-            //     '</select>'+
-                
-            //     '<select id="selectCidadePartida'+ indexIdPartida +'" class="selectCidadesPartida">'+
-            //         '<option>Cidade</option>'+
-            //     '</select>'+
-            //     '<button class="buttonRemoverConteinerEstadoCidadePartida mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'
-            // '</div>';
-
-            // $("#buttonAdicionarCidadePartida").before(html);
-            // $("#buttonAdicionarCidadePartida").prev().children(".selectEstadosPartida").val(i);
-            var cidade = estados[i];       
-            for(var j in cidade){
-                $("#selectCidadePartida").val(j);
-                console.log(i + " " + j + " " + cidade[j]);
-            }
-        }
-
+                    primeiraEscola = true;
+                    for(var escola in escolas){
+                        console.log("Estado: " + estado + " - " + cidade + " " + escolas[escola]);
+                        if(primeiraEscola){
+                            $(".selectEscolasDestino:eq(" +i + ")").val(escolas[escola]); 
+                            primeiraEscola = false;
+                        }else{
+                            $(".buttonAdicionarEscolaDestino").trigger("click");
+                            $(".selectEscolasDestino:eq(" +i + ")").val(escolas[escola]);                        
+                        }
+                        i++;
+                    }
+                }
+            }            
+        }              
     });
+}
+
+function preencherDadosPercursoEmpresa(){
+    
 }

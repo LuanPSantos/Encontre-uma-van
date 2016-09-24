@@ -11,7 +11,7 @@
         <!-- MDL -->
         <link rel="stylesheet" href="assets/css/mdl/material.min.css">
         <script src="assets/css/mdl/material.min.js"></script>
-        <link rel="stylesheet" href="https://code.getmdl.io/1.2.0/material.indigo-amber.min.css" /> <!-- tema -->
+        <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.teal-orange.min.css"/> <!-- tema -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         
         <!-- CSS -->
@@ -40,7 +40,7 @@
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             
             <!-- barra de menu do topo -->
-            <header class="mdl-layout__header">
+            <header class="mdl-layout__header ">
                 <div class="mdl-layout__header-row">
 
                     <!-- Titulo no menu -->
@@ -201,12 +201,12 @@
                                         
                                         <!-- ESCOLA de Destino -->
                                         <div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">
-                                            <input class="mdl-textfield__input" type="text" id="inputEscola" pattern="[a-zA-Z\s]+$">
-                                            <label class="mdl-textfield__label" for="inputEscola">Escola destino...</label>
+                                            <input class="mdl-textfield__input selectEscolasDestino id_0" type="text" id="inputEscola" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">
+                                            <!--<label class="mdl-textfield__label" for="inputEscola">Escola destino...</label>-->
                                         </div> 
 
                                         <!-- Botão de adicionar escolas -->
-                                        <button class="buttonAdicionarEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Escola</button><br>
+                                        <button class="buttonAdicionarEscolaDestino id_0 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Escola</button><br>
                                        
                                         <!-- Botão de adicionar cidades -->
                                         <button id="buttonAdicionarEstadoCidadeChegada" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Cidade</button>
