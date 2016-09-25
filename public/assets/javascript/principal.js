@@ -119,44 +119,16 @@ if(botaoCadastrar != null){
 //Cadastrar PERCURSOS
 function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestinoMatriz = [,]){
 
-    // var partida = 
-    // [
-    //     {
-    //         sigla:"SP",
-    //         cidades:
-    //         [
-    //             {
-    //                 nome: "cidade 1",
-    //                 empresas:
-    //                 [
-    //                     "empresa 1",
-    //                     "empresa 2"
-    //                 ]
-    //             }
-    //         ]
-    //     },
-    //     {
-    //         sigla:"SP",
-    //         cidades:
-    //         [
-    //             {
-    //                 nome: "cidade 1",
-    //                 empresas:
-    //                 [
-    //                     "empresa 1",
-    //                     "empresa 2"
-    //                 ]
-    //             }
-    //         ]
-    //     }
-    // ];
     var update = {};
+    var arrayCidades = [];
     for(var i = 0; i < estadosPartida.length; i++){        
-        update['/estados/' + estadosPartida[i] + '/' + cidadesPartida[i] + '/' + idEmpresa] = idEmpresa;        
+        update['/estados/' + estadosPartida[i] + '/' + cidadesPartida[i] + '/' + idEmpresa] = idEmpresa;
+        update['/empresas/' + idEmpresa + '/estados_partida/' + estadosPartida[i] + '/' + cidadesPartida[i]] = cidadesPartida[i];        
     }
-    firebase.database().ref().update(update);
+    
+    //firebase.database().ref().update(update);
      
-    update = {};
+    //update = {};
     var escolas = [];
     for(var i = 0; i < escolasDestinoMatriz.length; i++){
 
@@ -164,7 +136,7 @@ function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChe
         for(var j = 0; j < escolasDestinoMatriz[i].length; j++){
             escolas[j] = escolasDestinoMatriz[i][j];
         }
-        update['/empresas/' + idEmpresa + '/estados/' + estadosChegada[i] + '/' + cidadesChegada[i]] = escolas;
+        update['/empresas/' + idEmpresa + '/estados_chegada/' + estadosChegada[i] + '/' + cidadesChegada[i]] = escolas;
     }
     firebase.database().ref().update(update);
 }
@@ -175,9 +147,7 @@ if(botaoCadastrarPercursoEmpresa != null){
         if(formCadastrarPercursos != null){
                 formCadastrarPercursos.onsubmit = function(e){
                 e.preventDefault();
-                
-                // var cidadesJaCadastradas = [];  
-                // var escolasJaCadastradas = [];
+
                 var estadosPartida = [];
                 var cidadesPartida = [];
                 var estadosChegada = [];
@@ -189,7 +159,6 @@ if(botaoCadastrarPercursoEmpresa != null){
                 var cidadesPartidaE = document.getElementsByClassName("selectCidadesPartida");
                 var estadosChegadaE = document.getElementsByClassName("selectEstadosChegada");
                 var cidadesChegadaE = document.getElementsByClassName("selectCidadesChegada");
-                //var escolasDestinoE = document.getElementsByClassName("selectEscolasDestino");
 
                 var escolasDestinoMatriz = [,];
                 
@@ -197,57 +166,20 @@ if(botaoCadastrarPercursoEmpresa != null){
                     var temp = document.getElementsByClassName("selectEscolasDestino id_" + i);
                     var arraytemp = [];
                     for(var j = 0; j < temp.length; j++){
-                         arraytemp[j] = temp[j].value;     
-                        //console.log('Escola['+i+','+j+'] : '+ escolasDestinoMatriz[i,j]);                   
+                         arraytemp[j] = temp[j].value;                       
                     }    
                     escolasDestinoMatriz[i] = arraytemp;             
                 }
 
-                // for(var i = 0; i <= identificador; i++){
-                //     var temp = document.getElementsByClassName("selectEscolasDestino id_" + i);
-                //     for(var j = 0; j < temp.length; j++){     
-                //         console.log('Escola['+i+','+j+'] : '+ escolasDestinoMatriz[i][j]);                   
-                //     }                    
-                // }
-
-                /*firebase.database().ref('/empresas/'+idEmpresa+'/cidades').once('value').then(function(snapshot){
-                    var cidadesToString = {};
-                    if(snapshot.val() != null){
-                        cidadesToString = snapshot.val();
-
-                        var i = 0;
-                        for(cidade in cidadesToString){
-                            cidadesJaCadastradas[i] = (cidade);
-                            i++;
-                        }
-                        
-                        i = 0;
-                        for(i = 0; i < cidadesJaCadastradas.length; i++){                            
-                            //alert();
-                            firebase.database().ref('/empresas/'+idEmpresa+'/cidades/'+cidadesJaCadastradas[i]+'/escolas').once('value').then(function(snapshot){
-                                escolasJaCadastradas[i] = snapshot.val();
-                                //console.log(escolasJaCadastradas[i]);                                                               
-                            });
-                        }                        
-                    }
-                    
-                });*/
 
                 for(var i = 0; i < estadosPartidaE.length; i++){
                     estadosPartida[i] = estadosPartidaE[i].value;
                     cidadesPartida[i] = cidadesPartidaE[i].value;
-                    //alert("Partida - " + estadosPartida[i] + " - " + cidadesPartida[i] + " - " + estadosPartida.length);
                 }
                 for(var i = 0; i < estadosChegadaE.length; i++){
                     estadosChegada[i] = estadosChegadaE[i].value;
                     cidadesChegada[i] = cidadesChegadaE[i].value;
-                    //alert("Chagada - " + estadosChegada[i] + " - " + cidadesChegada[i] + " - " + estadosChegada.length);
                 }
-                /*for(var i = 0; i < escolasDestinoE.length; i++){
-                    escolasDestino[i] = escolasDestinoE[i].value;
-                    //alert("Escolas - " + escolasDestino[i] + " - " + escolasDestino.length);
-                }*/
-
                 
                 cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestinoMatriz);
             }
@@ -268,7 +200,7 @@ function carregarDadosEmpresa(){
 
     firebase.database().ref('/empresas/' + idEmpresa).once('value').then(function(snapshot){
         var dados = snapshot.val();
-
+        
         nomeEmpresa.value = dados.nome;
         emailEmpresa.value = dados.email;
         facebookEmpresa.value = dados.facebook;
@@ -277,7 +209,7 @@ function carregarDadosEmpresa(){
         mensalidadeEmpresa.value = dados.mensalidade;
         sobreEmpresa.value = dados.sobre;
 
-        var estados = dados.estados;        
+        var estados = dados.estados_chegada;        
         var i = 0, idChe = 0;
         var primeiraCidade = true;
         for(var estado in estados){
@@ -323,7 +255,26 @@ function carregarDadosEmpresa(){
                     }
                 }
                 idChe++;
-            }            
+            }              
+        }
+
+        primeiraCidade = true;
+        i = 0;
+        estados = dados.estados_partida;
+        for(var estado in estados){
+            var cidades = estados[estado];
+            for(var cidade in cidades){
+                if(primeiraCidade){
+                    $("#selectEstadoPartida" + i).val(estado).trigger("change");
+                    $("#selectCidadePartida" + i).val(cidade);
+                    primeiraCidade = false;
+                }else{
+                    $("#buttonAdicionarCidadePartida").trigger("click");
+                    $("#selectEstadoPartida" + i).val(estado).trigger("change");
+                    $("#selectCidadePartida" + i).val(cidade);
+                }
+                i++;
+            }
         }              
     });
 }
