@@ -73,7 +73,7 @@ $(document).ready(function (){
                 '<input class="mdl-textfield__input mdl-fake-textfield__input selectEscolasDestino id_'+ identificador +'" type="text" id="inputEscola2'+ indexIdChegada +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
                 /*'<span class="bar"></span>'+*/
             '</div>'+
-            '<button class="buttonAdicionarEscolaDestino id_'+ identificador +' mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Escola</button>'+
+            '<button class="buttonAdicionarEscolaDestino id_'+ indexIdChegada +' mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Escola</button>'+
         '</div>';
 
         $(this).before(html);

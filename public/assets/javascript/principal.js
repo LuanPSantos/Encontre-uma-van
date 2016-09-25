@@ -278,26 +278,26 @@ function carregarDadosEmpresa(){
         sobreEmpresa.value = dados.sobre;
 
         var estados = dados.estados;        
-        var i = 0;
+        var i = 0, idChe = 0;
         var primeiraCidade = true;
         for(var estado in estados){
             var cidades = estados[estado]; 
                     
-            for(var cidade in cidades){
-                $(".selectEstadosChegada").val(estado).trigger("change");
+            for(var cidade in cidades){               
 
                 if(primeiraCidade){
-                    $(".selectCidadesChegada").val(cidade);
+                    $(".selectEstadosChegada:eq(" + idChe + ")").val(estado).trigger("change");
+                    $(".selectCidadesChegada:eq(" +idChe+ ")").val(cidade);
                     var escolas = cidades[cidade];
                     
                     primeiraEscola = true;
                     for(var escola in escolas){
                         console.log("Estado: " + estado + " - " + cidade + " " + escolas[escola]);
                         if(primeiraEscola){
-                            $(".selectEscolasDestino:eq(" +i + ")").val(escolas[escola]); 
+                            $(".selectEscolasDestino:eq(" + i + ")").val(escolas[escola]); 
                             primeiraEscola = false;
                         }else{
-                            $(".buttonAdicionarEscolaDestino").trigger("click");
+                            $(".buttonAdicionarEscolaDestino:eq(" +idChe + ")").trigger("click");
                             $(".selectEscolasDestino:eq(" +i + ")").val(escolas[escola]);                        
                         }
                         i++;
@@ -305,8 +305,8 @@ function carregarDadosEmpresa(){
                     primeiraCidade = false;
                 }else{
                     $("#buttonAdicionarEstadoCidadeChegada").trigger("click");
-                    $(".selectEstadosChegada").val(estado).trigger("change");
-                    $(".selectCidadesChegada").val(cidade);
+                    $(".selectEstadosChegada:eq(" + idChe + ")").val(estado).trigger("change");
+                    $(".selectCidadesChegada:eq(" + idChe + ")").val(cidade);
                     var escolas = cidades[cidade];
 
                     primeiraEscola = true;
@@ -316,17 +316,14 @@ function carregarDadosEmpresa(){
                             $(".selectEscolasDestino:eq(" +i + ")").val(escolas[escola]); 
                             primeiraEscola = false;
                         }else{
-                            $(".buttonAdicionarEscolaDestino").trigger("click");
+                            $(".buttonAdicionarEscolaDestino:eq(" +idChe + ")").trigger("click");
                             $(".selectEscolasDestino:eq(" +i + ")").val(escolas[escola]);                        
                         }
                         i++;
                     }
                 }
+                idChe++;
             }            
         }              
     });
-}
-
-function preencherDadosPercursoEmpresa(){
-    
 }
