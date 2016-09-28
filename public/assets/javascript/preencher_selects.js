@@ -17,8 +17,16 @@ $(document).ready(function(){
             $(".selectEstadosPartida").append('<option>'+ estados_cidades[i].sigla +'</option>');
             $(".selectEstadosChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
 
+<<<<<<< HEAD
         }     
         if(window.location == "perfil.html")
+=======
+        }    
+
+        var sPath = window.location.pathname;
+        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1); 
+        if(sPage == "perfil.html")
+>>>>>>> origin/master
             carregarDadosEmpresa();
     });  
 
