@@ -224,7 +224,7 @@ function carregarDadosEmpresa(){
                     
                     primeiraEscola = true;
                     for(var escola in escolas){
-                        console.log("Estado: " + estado + " - " + cidade + " " + escolas[escola]);
+                        //console.log("Estado: " + estado + " - " + cidade + " " + escolas[escola]);
                         if(primeiraEscola){
                             $(".selectEscolasDestino:eq(" + i + ")").val(escolas[escola]); 
                             primeiraEscola = false;
@@ -243,7 +243,7 @@ function carregarDadosEmpresa(){
 
                     primeiraEscola = true;
                     for(var escola in escolas){
-                        console.log("Estado: " + estado + " - " + cidade + " " + escolas[escola]);
+                        //console.log("Estado: " + estado + " - " + cidade + " " + escolas[escola]);
                         if(primeiraEscola){
                             $(".selectEscolasDestino:eq(" +i + ")").val(escolas[escola]); 
                             primeiraEscola = false;
@@ -277,4 +277,47 @@ function carregarDadosEmpresa(){
             }
         }              
     });
+}
+//==========================================================================
+//== INDEX ================================================================
+function buscarEmpresas(estadoPartida, cidadePartida, escola, estadoChegada, cidadeChegada){
+    
+    var idEmpresas = [];
+    
+    firebase.database().ref('/estados/'+estadoPartida+'/'+cidadePartida).once('value').then(function (snapshot){
+        var objID = snapshot.val();
+
+        var i = 0;
+        for(var id in objID){
+            idEmpresas[i] = id;
+
+            firebase.database().ref('/empresas/' + idEmpresas[i]).once('value').then(function(snapshot){
+                var dados = snapshot.val();
+                var escolas = dados.estados_chegada[estadoChegada][cidadeChegada];
+
+                for(var i = 0; i < escolas.length; i++){
+                    if(escolas[i] == escola){
+                        var html = 
+                            '<article class="articleEmpresa mdl-shadow--4dp">'+
+                                '<h5 class="pNomeEmpresas">'+ dados.nome +'</h5>'+
+                                '<div class="divDadosEmpresas">'+
+                                    '<p class="pSobreEmpresa">'+ dados.sobre +'</p>'+
+                                    '<p class="pMensalidade">R$ '+ dados.mensalidade +'<span class="pPorMes"> por mês</span></p>'+
+                                    '<p class="pTelefoneEmpresa">'+ dados.telefone +'</p><i></i>'+
+                                    '<p class="pCelularEmpresa">'+ dados.celular +'</p><i></i>'+
+                                    '<p class="pFacebookEmpresa">'+ dados.facebook +'</p><i></i>'+
+                                    '<p class="pEmailEmpresa">'+ dados.email +'</p><i></i>'+                      
+                                '</div>'+    
+                            '</article>';
+                        
+                        $("#h3Resultados").after(html);
+                    }
+                } 
+            });
+
+            i++;
+        }
+    });
+
+    
 }

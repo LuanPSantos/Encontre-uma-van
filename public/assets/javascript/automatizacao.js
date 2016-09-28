@@ -95,7 +95,7 @@ $(document).ready(function (){
     });
 
     //Mostrar os detalhes da empresa nos resultados
-    $(".pNomeEmpresas").on("click", function(){
+    $("#sectionResultado").on("click",".pNomeEmpresas", function(){
         $(this).next().slideToggle();
     });      
 });
