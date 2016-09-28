@@ -201,6 +201,8 @@ function carregarDadosEmpresa(){
     firebase.database().ref('/empresas/' + idEmpresa).once('value').then(function(snapshot){
         var dados = snapshot.val();
         
+        console.log("oi");
+        
         nomeEmpresa.value = dados.nome;
         emailEmpresa.value = dados.email;
         facebookEmpresa.value = dados.facebook;
@@ -259,6 +261,7 @@ function carregarDadosEmpresa(){
         }
 
         primeiraCidade = true;
+        
         i = 0;
         estados = dados.estados_partida;
         for(var estado in estados){

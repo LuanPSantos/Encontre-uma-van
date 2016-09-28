@@ -18,7 +18,7 @@ $(document).ready(function(){
             $(".selectEstadosChegada").append('<option>'+ estados_cidades[i].sigla +'</option>');
 
         }     
-        if(window.location == "file:///C:/Users/santo/Documents/GitHub/Encontre-uma-van/public/perfil.html")
+        if(window.location == "perfil.html")
             carregarDadosEmpresa();
     });  
 
