@@ -15,13 +15,18 @@ var formCadastrarPercursos = document.getElementById("formCadastrarPercursos");
 var botaoCadastrarPercursoEmpresa = document.getElementById("buttonCadastroPercursosEmpresa");
 
 // Funções para LOGAR ===========================================================================
-function logar(emailLogin, senhaLogin){
+function logar(emailLogin, senhaLogin, chamarPerfil = false){
     firebase.auth().signInWithEmailAndPassword(emailLogin, senhaLogin).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
-        alert("ERRO-login: " + errorMessage);
+        //alert("ERRO-login: " + errorMessage);
+    }).then(function(chamarPerfil){
+        if(chamarPerfil){            
+            //Apos logar, vai para a pagina de perfil
+            window.location.assign("perfil.html");
+        }
     });
 
     $("#divLogin").fadeOut(); 
@@ -36,11 +41,8 @@ if(botaoLogin != null){
                 var senhaLogin = document.getElementById("senhaLogin").value;
                 e.preventDefault();
 
-                logar(emailLogin, senhaLogin).then(function(){
-                    //Apos logar, vai para a pagina de perfil
-                    window.location.assign("perfil.html");
-                });
-
+                logar(emailLogin, senhaLogin, true);
+                
                 document.getElementById("emailLogin").value = '';
                 document.getElementById("senhaLogin").value = '';
             };
@@ -58,7 +60,7 @@ function cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, tel
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
-        alert("ERRO-cadastrar: " + errorMessage);
+        //alert("ERRO-cadastrar: " + errorMessage);
     }).then(function(){
         //Faz o login com o email e a senha
         logar(emailEmpresa, senhaEmpresa);
