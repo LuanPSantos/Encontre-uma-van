@@ -22,17 +22,13 @@ function logar(emailLogin, senhaLogin){
         var errorMessage = error.message;
         // ...
         alert("ERRO-login: " + errorMessage);
-    }).then(function(){
-        window.location.assign("perfil.html");
     });
 
     $("#divLogin").fadeOut(); 
 }
 
 if(botaoLogin != null){
-    botaoLogin.onclick = function (event){
-        //window.location.assign("perfil.html");
-        //event.preventDefault();
+    botaoLogin.onclick = function (){
         if(formLogin != null){
             formLogin.onsubmit = function(e){
 
@@ -40,7 +36,10 @@ if(botaoLogin != null){
                 var senhaLogin = document.getElementById("senhaLogin").value;
                 e.preventDefault();
 
-                logar(emailLogin, senhaLogin);
+                logar(emailLogin, senhaLogin).then(function(){
+                    //Apos logar, vai para a pagina de perfil
+                    window.location.assign("perfil.html");
+                });
 
                 document.getElementById("emailLogin").value = '';
                 document.getElementById("senhaLogin").value = '';
@@ -53,18 +52,24 @@ if(botaoLogin != null){
 // Funções para CADASTRAR =======================================================================
 function cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa){
 
+    //Cadastra o email e senha 
     firebase.auth().createUserWithEmailAndPassword(emailEmpresa, senhaEmpresa).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
         alert("ERRO-cadastrar: " + errorMessage);
-    }).then(function (){
+    }).then(function(){
+        //Faz o login com o email e a senha
         logar(emailEmpresa, senhaEmpresa);
-
-        atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa,telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
-        window.location.assign("cadastro_percursos.html");
-    });    
+        
+        //Para cadastrar os outros dados no banco de dados
+        atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa,
+                            telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa).then(function(){ 
+            //Apos o primeiro cadastro, vai para a segunda parte
+            window.location.assign("cadastro_percursos.html");
+        });
+    });
 }
 
 function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa,telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa){
@@ -84,10 +89,9 @@ function atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa,telefo
     return firebase.database().ref('/empresas/' + idEmpresa).update(dadosEmpresa);
 }
 
+//Quando o usuario clicar no botao PRONTO da primeira parte do cadastro
 if(botaoCadastrar != null){
-    botaoCadastrar.onclick = function (event){
-        //window.location.assign("cadastro_percursos.html");
-        //event.preventDefault();
+    botaoCadastrar.onclick = function (){
         if(formCadastrar != null){
             formCadastrar.onsubmit = function(e){
                 
@@ -103,10 +107,7 @@ if(botaoCadastrar != null){
 
                 e.preventDefault();
 
-                cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
-
-                //window.location.href = "perfil.html";
-                //
+                cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);  
             }
         }
     }
@@ -117,14 +118,14 @@ function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChe
 
     var update = {};
     var arrayCidades = [];
+
+    //Salva os caminhos para os estados-cidades de partida
     for(var i = 0; i < estadosPartida.length; i++){        
         update['/estados/' + estadosPartida[i] + '/' + cidadesPartida[i] + '/' + idEmpresa] = idEmpresa;
         update['/empresas/' + idEmpresa + '/estados_partida/' + estadosPartida[i] + '/' + cidadesPartida[i]] = cidadesPartida[i];        
     }
-    
-    //firebase.database().ref().update(update);
-     
-    //update = {};
+
+    //Aqui salva os caminhos para os estados-cidades-escolas de destino
     var escolas = [];
     for(var i = 0; i < escolasDestinoMatriz.length; i++){
 
@@ -134,7 +135,10 @@ function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChe
         }
         update['/empresas/' + idEmpresa + '/estados_chegada/' + estadosChegada[i] + '/' + cidadesChegada[i]] = escolas;
     }
-    firebase.database().ref().update(update);
+    firebase.database().ref().update(update).then(function(){
+        //Apos cadastrar os percursos, será redirecionado para o perfil
+        window.location.assign("perfil.html");
+    });
 }
 
 if(botaoCadastrarPercursoEmpresa != null){
@@ -158,6 +162,7 @@ if(botaoCadastrarPercursoEmpresa != null){
 
                 var escolasDestinoMatriz = [,];
                 
+                //Cria uma matriz onde cada linha contem as escolas de cada cidade em ordem
                 for(var i = 0; i <= identificador; i++){
                     var temp = document.getElementsByClassName("selectEscolasDestino id_" + i);
                     var arraytemp = [];
@@ -177,7 +182,7 @@ if(botaoCadastrarPercursoEmpresa != null){
                     cidadesChegada[i] = cidadesChegadaE[i].value;
                 }
                 
-                cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestinoMatriz);
+                cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestinoMatriz);               
             }
         }  
     }
@@ -208,6 +213,8 @@ function carregarDadosEmpresa(){
         var estados = dados.estados_chegada;        
         var i = 0, idChe = 0;
         var primeiraCidade = true;
+
+        //Preeche os inputs e select de chegada com os estados-cidades-escolas
         for(var estado in estados){
             var cidades = estados[estado]; 
                     
@@ -258,6 +265,8 @@ function carregarDadosEmpresa(){
         
         i = 0;
         estados = dados.estados_partida;
+
+        //Preenche os select de partida com os estados-cidades
         for(var estado in estados){
             var cidades = estados[estado];
             for(var cidade in cidades){
