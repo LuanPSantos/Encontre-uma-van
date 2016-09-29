@@ -4,11 +4,6 @@ var botaoLogin = document.getElementById("buttonLogin");
 
 //Busca
 var formBusca = document.getElementById("formBusca");
-var estadoPartida = document.getElementById("selectEstadoPartida");
-var cidadePartida = document.getElementById("selectCidadePartida");
-var nomeEscola = document.getElementById("inputEscola");
-var estadoChegada = document.getElementById("selectCidadeChegada");
-var cidadeChegada = document.getElementById("selectCidadeChegada");
 var botaoBuscar = document.getElementById("buttonBuscar");
 
 // //cadastrar
@@ -27,6 +22,8 @@ function logar(emailLogin, senhaLogin){
         var errorMessage = error.message;
         // ...
         alert("ERRO-login: " + errorMessage);
+    }).then(function(){
+        window.location.assign("perfil.html");
     });
 
     $("#divLogin").fadeOut(); 
@@ -47,8 +44,6 @@ if(botaoLogin != null){
 
                 document.getElementById("emailLogin").value = '';
                 document.getElementById("senhaLogin").value = '';
-
-               // window.location.assign("perfil.html");
             };
         }
     }
@@ -68,6 +63,7 @@ function cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, tel
         logar(emailEmpresa, senhaEmpresa);
 
         atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa,telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
+        window.location.assign("cadastro_percursos.html");
     });    
 }
 
@@ -110,7 +106,7 @@ if(botaoCadastrar != null){
                 cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
 
                 //window.location.href = "perfil.html";
-                //window.location.assign("cadastro_percursos.html");
+                //
             }
         }
     }
@@ -201,8 +197,6 @@ function carregarDadosEmpresa(){
     firebase.database().ref('/empresas/' + idEmpresa).once('value').then(function(snapshot){
         var dados = snapshot.val();
         
-        console.log("oi");
-        
         nomeEmpresa.value = dados.nome;
         emailEmpresa.value = dados.email;
         facebookEmpresa.value = dados.facebook;
@@ -284,6 +278,7 @@ function carregarDadosEmpresa(){
 //==========================================================================
 //== INDEX ================================================================
 function buscarEmpresas(estadoPartida, cidadePartida, escola, estadoChegada, cidadeChegada){
+    $("#divConteinerResultados").empty();
     
     var idEmpresas = [];
     
@@ -298,29 +293,49 @@ function buscarEmpresas(estadoPartida, cidadePartida, escola, estadoChegada, cid
                 var dados = snapshot.val();
                 var escolas = dados.estados_chegada[estadoChegada][cidadeChegada];
 
-                for(var i = 0; i < escolas.length; i++){
-                    if(escolas[i] == escola){
-                        var html = 
-                            '<article class="articleEmpresa mdl-shadow--4dp">'+
-                                '<h5 class="pNomeEmpresas">'+ dados.nome +'</h5>'+
-                                '<div class="divDadosEmpresas">'+
-                                    '<p class="pSobreEmpresa">'+ dados.sobre +'</p>'+
-                                    '<p class="pMensalidade">R$ '+ dados.mensalidade +'<span class="pPorMes"> por mês</span></p>'+
-                                    '<p class="pTelefoneEmpresa">'+ dados.telefone +'</p><i></i>'+
-                                    '<p class="pCelularEmpresa">'+ dados.celular +'</p><i></i>'+
-                                    '<p class="pFacebookEmpresa">'+ dados.facebook +'</p><i></i>'+
-                                    '<p class="pEmailEmpresa">'+ dados.email +'</p><i></i>'+                      
-                                '</div>'+    
-                            '</article>';
-                        
-                        $("#h3Resultados").after(html);
-                    }
-                } 
+                if(escolas != 'undefined' && escolas != '' && escolas != null){
+                    for(var i = 0; i < escolas.length; i++){
+                        if(escolas[i] == escola){
+                            var html = 
+                                '<article class="articleEmpresa mdl-shadow--4dp">'+
+                                    '<h5 class="pNomeEmpresas">'+ dados.nome +'</h5>'+
+                                    '<div class="divDadosEmpresas">'+
+                                        '<p class="pSobreEmpresa">'+ dados.sobre +'</p>'+
+                                        '<p class="pMensalidade">R$ '+ dados.mensalidade +'<span class="pPorMes"> por mês</span></p>'+
+                                        '<p class="pTelefoneEmpresa">'+ dados.telefone +'</p><i></i>'+
+                                        '<p class="pCelularEmpresa">'+ dados.celular +'</p><i></i>'+
+                                        '<p class="pFacebookEmpresa">'+ dados.facebook +'</p><i></i>'+
+                                        '<p class="pEmailEmpresa">'+ dados.email +'</p><i></i>'+                      
+                                    '</div>'+    
+                                '</article>';
+                            
+                            $("#divConteinerResultados").append(html);
+                            break;
+                        }
+                    } 
+                }
             });
 
             i++;
         }
-    });
-
-    
+    });    
 }
+
+if(botaoBuscar != null){
+    botaoBuscar.onclick = function(){
+        if(formBusca != null){
+            formBusca.onsubmit = function(e){
+                e.preventDefault();
+
+                var estadoPartida = document.getElementById("selectEstadoPartida").value;
+                var cidadePartida = document.getElementById("selectCidadePartida").value;
+                var nomeEscola = document.getElementById("inputEscola").value;
+                var estadoChegada = document.getElementById("selectEstadoChegada").value;
+                var cidadeChegada = document.getElementById("selectCidadeChegada").value;
+
+                buscarEmpresas(estadoPartida,cidadePartida,nomeEscola,estadoChegada,cidadeChegada);
+            }
+        }
+    }
+}
+
