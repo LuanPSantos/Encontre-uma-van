@@ -26,7 +26,7 @@ function logar(emailLogin, senhaLogin, chamarPerfil = false){
         var errorMessage = error.message;
         // ...
         //alert("ERRO-login: " + errorMessage);
-    }).then(function(chamarPerfil){
+    }).then(function(){
         if(chamarPerfil){            
             //Apos logar, vai para a pagina de perfil
             window.location.assign("perfil.html");
@@ -105,6 +105,7 @@ if(botaoCadastrar != null){
                 var nomeEmpresa = document.getElementById("inputNomeEmpresa").value;
                 var emailEmpresa = document.getElementById("inputEmailEmpresa").value;
                 var senhaEmpresa = document.getElementById("inputSenhaEmpresa").value;
+                var confirmacaoSenha = document.getElementById("inputConfirmarSenhaEmpresa").value;
                 var facebookEmpresa = document.getElementById("inputFacebookEmpresa").value;
                 var telefoneEmpresa = document.getElementById("inputTelefoneEmpresa").value;
                 var celularEmpresa = document.getElementById("inputCelularEmpresa").value;
@@ -113,7 +114,13 @@ if(botaoCadastrar != null){
 
                 e.preventDefault();
 
-                cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);  
+                if(senhaEmpresa >= 6 && senhaEmpresa == confirmacaoSenha)
+                    cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa); 
+                else{
+                    alert("Senha não conforme.");
+                    senhaEmpresa = document.getElementById("inputSenhaEmpresa").value = "";
+                    confirmacaoSenha = document.getElementById("inputConfirmarSenhaEmpresa").value = "";
+                }     
             }
         }
     }
@@ -126,8 +133,6 @@ function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChe
     var matrizCidades = [];
     var ultimoEstado = estadosPartida[0];    
 
-    firebase.database().ref('/empresas/' + idEmpresa + '/estados_partida').remove();
-    firebase.database().ref('/empresas/' + idEmpresa + '/estados_chegada').remove();
     
     //Salva os caminhos para os estados-cidades de partida
     for(var i = 0; i < estadosPartida.length; i++){       
@@ -253,8 +258,16 @@ if(buttonSalvarAlteracoesEmpresa != null){
                     cidadesChegada[i] = cidadesChegadaE[i].value;
                 }
 
-                cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestinoMatriz);
+                
+                firebase.database().ref('/empresas/' + idEmpresa + '/estados_partida').remove();
+                firebase.database().ref('/empresas/' + idEmpresa + '/estados_chegada').remove();
+
+                var user = firebase.auth().currentUser;
+                user.updateEmail(emailEmpresa);
+                user.updatePassword(senhaEmpresa);
+
                 atualizarDadosEmpresa(nomeEmpresa, emailEmpresa, facebookEmpresa,telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa);
+                cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestinoMatriz); 
             }
         }
     }
