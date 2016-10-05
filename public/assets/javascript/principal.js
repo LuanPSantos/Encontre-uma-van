@@ -2,6 +2,9 @@
 var formLogin = document.getElementById("formLogin");
 var botaoLogin = document.getElementById("buttonLogin");
 
+//sair
+var botaoSair = document.getElementById("buttonSair");
+
 //Busca
 var formBusca = document.getElementById("formBusca");
 var botaoBuscar = document.getElementById("buttonBuscar");
@@ -12,7 +15,7 @@ var botaoCadastrar = document.getElementById("buttonCadastroEmpresa");
 
 //Perfil
 var formPerfilEmpresa = document.getElementById("formPerfilEmpresa");
-var buttonSalvarAlteracoesEmpresa = document.getElementById("buttonSalvarAlteracoesEmpresa");
+var botaoSalvarAlteracoesEmpresa = document.getElementById("buttonSalvarAlteracoesEmpresa");
 
 //Cadastrar PERCURSOS
 var formCadastrarPercursos = document.getElementById("formCadastrarPercursos");
@@ -55,6 +58,15 @@ if(botaoLogin != null){
 }
 // ==============================================================================================
 
+// Função SAIR ==================================================================================
+if(botaoSair != null){
+    botaoSair.onclick = function(){
+        firebase.auth().signOut().then(function(){
+            window.location.assign("index.html");
+        });
+    }
+}
+//===============================================================================================
 // Funções para CADASTRAR =======================================================================
 function cadastrar(nomeEmpresa, emailEmpresa, senhaEmpresa, facebookEmpresa, telefoneEmpresa, celularEmpresa, mensalidadeEmpresa, sobreEmpresa){
 
@@ -208,8 +220,8 @@ if(botaoCadastrarPercursoEmpresa != null){
     }
 }
 
-if(buttonSalvarAlteracoesEmpresa != null){
-    buttonSalvarAlteracoesEmpresa.onclick = function(){
+if(botaoSalvarAlteracoesEmpresa != null){
+    botaoSalvarAlteracoesEmpresa.onclick = function(){
         if(formPerfilEmpresa != null){
             formPerfilEmpresa.onsubmit = function(e){
                 e.preventDefault();
