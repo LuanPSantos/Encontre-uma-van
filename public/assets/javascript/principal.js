@@ -5,6 +5,9 @@ var botaoLogin = document.getElementById("buttonLogin");
 //sair
 var botaoSair = document.getElementById("buttonSair");
 
+//Excluir
+var botaoExcluirConta = document.getElementById("buttonExcluirConta");
+
 //Busca
 var formBusca = document.getElementById("formBusca");
 var botaoBuscar = document.getElementById("buttonBuscar");
@@ -64,6 +67,79 @@ if(botaoSair != null){
         firebase.auth().signOut().then(function(){
             window.location.assign("index.html");
         });
+    }
+}
+//===============================================================================================
+// Função Excluir Conta =========================================================================
+function excluirConta(){
+    var empresa = firebase.auth().currentUser;
+    var idEmpresa = empresa.uid;
+    var estadosPartida = [];
+    var cidadesPartida = [];
+    var estadosChegada = [];
+    var cidadesChegada = [];
+    var escolasDestino = [];
+
+    var estadosPartidaE = document.getElementsByClassName("selectEstadosPartida");
+    var cidadesPartidaE = document.getElementsByClassName("selectCidadesPartida");
+    var estadosChegadaE = document.getElementsByClassName("selectEstadosChegada");
+    var cidadesChegadaE = document.getElementsByClassName("selectCidadesChegada");
+
+    var escolasDestinoMatriz = [,];
+    
+    //Cria uma matriz onde cada linha contem as escolas de cada cidade em ordem
+    for(var i = 0; i <= identificador; i++){
+        var temp = document.getElementsByClassName("selectEscolasDestino id_" + i);
+        var arraytemp = [];
+        for(var j = 0; j < temp.length; j++){
+                arraytemp[j] = temp[j].value;                       
+        }    
+        escolasDestinoMatriz[i] = arraytemp;             
+    }
+
+    for(var i = 0; i < estadosPartidaE.length; i++){
+        estadosPartida[i] = estadosPartidaE[i].value;
+        cidadesPartida[i] = cidadesPartidaE[i].value;
+    }
+    for(var i = 0; i < estadosChegadaE.length; i++){
+        estadosChegada[i] = estadosChegadaE[i].value;
+        cidadesChegada[i] = cidadesChegadaE[i].value;
+    }
+
+    var update = {};
+    var matrizCidades = [];
+    var ultimoEstado = estadosPartida[0];    
+
+    //Salva os caminhos para os estados-cidades de partida
+    for(var i = 0; i < estadosPartida.length; i++){       
+        update['/estados/' + estadosPartida[i] + '/' + cidadesPartida[i] + '/' + idEmpresa] = null;
+
+        //Mudar para um modo em que um array de cidades é salvo uma vez em casa estado (ideia original)     
+    }
+
+    //Aqui salva os caminhos para os estados-cidades-escolas de destino
+    var escolas = [];
+    for(var i = 0; i < escolasDestinoMatriz.length; i++){
+
+        escolas = [];
+        for(var j = 0; j < escolasDestinoMatriz[i].length; j++){
+            escolas[j] = escolasDestinoMatriz[i][j];
+        }
+    }
+
+    update['/empresas/' + idEmpresa] = null;
+    firebase.database().ref().update(update);
+    
+    empresa.delete().then(function() {
+        window.location.assign("index.html");
+    }, function(error) {
+        // An error happened.
+    });
+}
+if(botaoExcluirConta != null){
+    botaoExcluirConta.onclick = function(){
+
+        excluirConta();
     }
 }
 //===============================================================================================
@@ -137,8 +213,8 @@ if(botaoCadastrar != null){
         }
     }
 }
-
-//Cadastrar PERCURSOS
+//=============================================================================================
+//Cadastrar PERCURSOS =========================================================================
 function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChegada, cidadesChegada, escolasDestinoMatriz = [,]){
 
     var update = {};
@@ -171,7 +247,6 @@ function cadastrarPercurso(idEmpresa, estadosPartida, cidadesPartida, estadosChe
     
     
 }
-
 
 if(botaoCadastrarPercursoEmpresa != null){
     botaoCadastrarPercursoEmpresa.onclick = function(){
@@ -219,7 +294,8 @@ if(botaoCadastrarPercursoEmpresa != null){
         }  
     }
 }
-
+//=================================================================================================
+// Salvar alterações
 if(botaoSalvarAlteracoesEmpresa != null){
     botaoSalvarAlteracoesEmpresa.onclick = function(){
         if(formPerfilEmpresa != null){
