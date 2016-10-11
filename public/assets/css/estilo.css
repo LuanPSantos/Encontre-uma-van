@@ -166,12 +166,14 @@ body{
 
 /* FUNCIONA PARA TODOS OS SELECTS DE ESTADO E CIDADE */
 .selectEstadosPartida, .selectCidadesPartida, .selectEstadosChegada, .selectCidadesChegada, .selectEscolasDestino{
-    padding: 8px 24px 8px 16px;
+    /*padding: 8px 24px 8px 16px;*/
     border: none;
     border-bottom: 2px solid #d2d2d2;
     outline: none;
 }
-
+.selectEstadosPartida, .selectCidadesPartida, .selectEstadosChegada, .selectCidadesChegada{
+    padding: 8px 24px 8px 16px;
+}
 .selectEstadosPartida, .selectEstadosChegada{
     width: calc(30% - 2px);
     
@@ -195,7 +197,7 @@ body{
 }
 
 .selectEscolasDestino{
-    width: 80%;
+    /*width: 80%;*/
 }
 
 .buttonAdicionarEscolaDestino{
@@ -211,7 +213,7 @@ body{
 }
 
 .selectEscolasDestino{
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 .buttonRemoverEscolaDestino{

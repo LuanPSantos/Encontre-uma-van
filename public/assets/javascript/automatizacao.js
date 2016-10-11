@@ -41,7 +41,7 @@ $(document).ready(function (){
 
         var html = 
         '<div class="divConteinerEscolaDestino">'+
-            '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ /* Grande problema aqui!!! */
+            '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ 
                 '<input class="mdl-textfield__input mdl-fake-textfield__input selectEscolasDestino id_'+ identificador +'" type="text" id="inputEscola'+ indexIdEscola +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
                 '<span class="bar"></span>'+
             '</div>'+
