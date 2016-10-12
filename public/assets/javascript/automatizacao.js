@@ -19,7 +19,7 @@ $(document).ready(function (){
             '<select id="selectCidadePartida'+ indexIdPartida +'" class="selectCidadesPartida">'+
                 '<option>Cidade</option>'+
             '</select>'+
-            '<button class="buttonRemoverConteinerEstadoCidadePartida mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'
+            '<button class="buttonRemoverConteinerEstadoCidadePartida mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">-</button>'
         '</div>';
         
         $(this).before(html); 
@@ -45,7 +45,7 @@ $(document).ready(function (){
                 '<input class="mdl-textfield__input mdl-fake-textfield__input selectEscolasDestino id_'+ identificador +'" type="text" id="inputEscola'+ indexIdEscola +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
                 '<span class="bar"></span>'+
             '</div>'+
-            '<button class="buttonRemoverEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
+            '<button class="buttonRemoverEscolaDestino mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">-</button>'+
         '</div>'
 
         $(this).before(html);
@@ -68,12 +68,12 @@ $(document).ready(function (){
             '<select id="selectCidadeChegada'+ indexIdChegada +'" class="selectCidadesChegada id_'+ identificador +'">'+
                 '<option>Cidade</option>'+
             '</select>'+
-            '<button class="buttonRemoverEstadoCidadeChegada mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">-</button>'+
+            '<button class="buttonRemoverEstadoCidadeChegada mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">-</button>'+
             '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ 
                 '<input class="mdl-textfield__input mdl-fake-textfield__input selectEscolasDestino id_'+ identificador +'" type="text" id="inputEscola2'+ indexIdChegada +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
                 /*'<span class="bar"></span>'+*/
             '</div>'+
-            '<button class="buttonAdicionarEscolaDestino id_'+ indexIdChegada +' mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">+ Escola</button>'+
+            '<button class="buttonAdicionarEscolaDestino id_'+ indexIdChegada +' mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">+ Escola</button>'+
         '</div>';
 
         $(this).before(html);
