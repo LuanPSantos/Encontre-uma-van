@@ -10,6 +10,11 @@ body{
     color: #fcfcfc;
 }
 
+.background-amarelo-escuro{
+    background-color: #DEB723 !important;
+    color: #fcfcfc;
+}
+
 /* LOGIN ============================ */
 #divLogin{
     position: fixed;
@@ -267,7 +272,7 @@ body{
     width: 0;
     bottom: -1px;
     position: absolute;
-    background: #5264ae;
+    background: #facb18;
     transition: 0.2s ease all;
 }
 .bar:before { left: 50%; }
@@ -311,22 +316,36 @@ body{
     font-weight: bold;
     display: block;
     width: 100%;
+    background-color: #171614;
+    color: white;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .spanTextoTime{
     text-align: center;
     display: block;
-    width: 100%;
+    width: calc(100% - 30px);
+    background-color: white;
+    padding: 15px;
 }
 
 .spanEmailTime{
     text-align: center;
     display: block;
     width: 100%;
+    background-color: #171614;
+    color: white;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .divIntegrantes{
     margin-bottom: 25px;
+}
+
+.textoJustificado{
+    text-align: justify;
 }
 
 /* ============================================ */
