@@ -508,6 +508,7 @@ if(botaoBuscar != null){
         if(formBusca != null){
             formBusca.onsubmit = function(e){
                 e.preventDefault();
+                document.getElementById('sectionResultado').scrollIntoView();
 
                 var estadoPartida = document.getElementById("selectEstadoPartida").value;
                 var cidadePartida = document.getElementById("selectCidadePartida").value;
