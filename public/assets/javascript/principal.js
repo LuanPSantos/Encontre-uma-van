@@ -477,7 +477,7 @@ function buscarEmpresas(estadoPartida, cidadePartida, escola, estadoChegada, cid
 
                 if(escolas != 'undefined' && escolas != '' && escolas != null){
                     for(var i = 0; i < escolas.length; i++){
-                        if(escolas[i] == escola){
+                        if(escolas[i].toUpperCase() == escola){
                             var html = 
                                 '<article class="articleEmpresa mdl-shadow--4dp">'+
                                     '<h5 class="pNomeEmpresas">'+ dados.nome +'</h5>'+
@@ -512,6 +512,7 @@ if(botaoBuscar != null){
                 var estadoPartida = document.getElementById("selectEstadoPartida").value;
                 var cidadePartida = document.getElementById("selectCidadePartida").value;
                 var nomeEscola = document.getElementById("inputEscola").value;
+                nomeEscola = nomeEscola.toUpperCase();
                 var estadoChegada = document.getElementById("selectEstadoChegada").value;
                 var cidadeChegada = document.getElementById("selectCidadeChegada").value;
 
