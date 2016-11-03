@@ -169,19 +169,19 @@
                                         
                                         <div class="divConteinerEstadoCidadePartida">
                                             <!-- ESTADOS de PARTIDA -->
-                                            <select id="selectEstadoPartida'+ indexIdPartida +'" class="selectEstadosPartida margin-right-4px">
+                                            <select id="selectEstadoPartida0" class="selectEstadosPartida margin-right-4px">
                                                 <option>Estado</option>
                                             </select>
                                             
                                             <!-- CIDADES de PARTIDA -->
-                                            <select id="selectCidadePartida'+ indexIdPartida +'" class="selectCidadesPartida">
+                                            <select id="selectCidadePartida0" class="selectCidadesPartida">
                                                 <option>Cidade</option>
                                             </select>
                                             <button class="buttonRemoverConteinerEstadoCidadePartida mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">-</button>
                                         </div>                                        
 
                                         <!-- Botão de adicção -->
-                                        <button id="buttonAdicionarCidadePartida" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">+ Cidade</button>
+                                        <button id="buttonAdicionarCidadePartida" class="menos-2px-margin-left mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">+ Cidade</button>
                                     </section>
                                 </div>
 
@@ -194,18 +194,24 @@
                                         <h5>Em quais cidades você passa para deixar passageiros?</h5>
 
                                         <div class="divConteinerEstadoCidadeEscolaChegada">
-                                            <select id="selectEstadoChegada'+ indexIdChegada +'" class="selectEstadosChegada id_'+ identificador +' margin-right-4px">
+
+                                            <!-- ESTADO de CHEGADA -->
+                                            <select id="selectEstadoChegada'+ indexIdChegada +'" class="selectEstadosChegada id_0 margin-right-4px">
                                                 <option>Estado</option>
-                                            </select>         
-                                            <select id="selectCidadeChegada'+ indexIdChegada +'" class="selectCidadesChegada id_'+ identificador +'">
+                                            </select> 
+
+                                            <!-- CIDADES de CHEGADA -->        
+                                            <select id="selectCidadeChegada'+ indexIdChegada +'" class="selectCidadesChegada id_0">
                                                 <option>Cidade</option>
                                             </select>
+
+                                            <!-- ESCOLA de Destino -->
                                             <button class="buttonRemoverEstadoCidadeChegada mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">-</button>
                                             <div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">
-                                                <input class="mdl-textfield__input mdl-fake-textfield__input selectEscolasDestino id_'+ identificador +'" type="text" id="inputEscola2'+ indexIdChegada +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">
+                                                <input class="mdl-textfield__input mdl-fake-textfield__input selectEscolasDestino id_0" type="text" id="inputEscola'+ indexIdChegada +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">
                                                 
                                             </div>
-                                            <button class="buttonAdicionarEscolaDestino id_'+ indexIdChegada +' mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">+ Escola</button>
+                                            <button class="buttonAdicionarEscolaDestino id_0 mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">+ Escola</button>
                                         </div>
                                         <!--<div class="divConteinerEstadoCidadeEscolaChegada">
                                             <!-- ESTADO de CHEGADA --
