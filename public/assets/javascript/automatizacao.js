@@ -71,7 +71,6 @@ $(document).ready(function (){
             '<button class="buttonRemoverEstadoCidadeChegada mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">-</button>'+
             '<div class="mdl-textfield mdl-js-textfield divConteinerTextFieldPercursos">'+ 
                 '<input class="mdl-textfield__input mdl-fake-textfield__input selectEscolasDestino id_'+ identificador +'" type="text" id="inputEscola2'+ indexIdChegada +'" pattern="[a-zA-Z\s]+$" placeholder="Escola destino...">'+
-                /*'<span class="bar"></span>'+*/
             '</div>'+
             '<button class="buttonAdicionarEscolaDestino id_'+ indexIdChegada +' mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect background-maire">+ Escola</button>'+
         '</div>';
