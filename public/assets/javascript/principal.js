@@ -490,8 +490,9 @@ function buscarEmpresas(estadoPartida, cidadePartida, escola, estadoChegada, cid
                                         '<p class="pEmailEmpresa">'+ dados.email +'</p><i></i>'+                      
                                     '</div>'+    
                                 '</article>';
-                            
+                            $("#sectionResultado").show();
                             $("#divConteinerResultados").append(html);
+                            document.getElementById('sectionResultado').scrollIntoView();
                             break;
                         }
                     } 
@@ -508,7 +509,7 @@ if(botaoBuscar != null){
         if(formBusca != null){
             formBusca.onsubmit = function(e){
                 e.preventDefault();
-                document.getElementById('sectionResultado').scrollIntoView();
+                
 
                 var estadoPartida = document.getElementById("selectEstadoPartida").value;
                 var cidadePartida = document.getElementById("selectCidadePartida").value;

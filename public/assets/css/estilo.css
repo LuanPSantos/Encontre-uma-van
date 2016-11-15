@@ -5,6 +5,14 @@ body{
     background-position-y: -150px;*/
 }
 
+.background-fixed-amarelo{
+    background-color: #facb18;
+    width: 100%;
+    height: 400px;
+    position: fixed;
+    z-index: -1;
+}
+
 .background-maire{
     background-color: #171614 !important;
     color: #fcfcfc;
@@ -45,7 +53,7 @@ body{
 /* CONTEINER BUSCAR ================ */
 #formBusca{
     background-color: white;
-    padding: 20px;
+    padding: 50px 100px 50px 100px;
 }
 
 .mdl-select-conteiner--estados-cidades{
@@ -59,7 +67,7 @@ body{
     padding: 8px 24px 8px 16px;
     outline: none;
     border: none;
-    border-bottom: 2px solid #d2d2d2;
+    /*border-bottom: 2px solid #d2d2d2;*/
 }
 
 #selectCidadeChegada, #selectCidadePartida{
@@ -93,7 +101,11 @@ body{
 /* ===================================== */
 
 /* RESULTADOS ==========================*/
+#sectionResultado{
+    display: none;
+}
 #h3Resultados{
+    
     text-align: center;
     color: white;
     /*background-color: midnightblue;*/
@@ -127,7 +139,7 @@ body{
 .pMensalidade{
     border-bottom: 2px solid deeppink;
     padding: 5px 20px 5px 20px;
-    font-size: 18pt;
+    font-size: 12pt;
     display: block;
     width: fit-content;
     float: right;
@@ -178,7 +190,7 @@ body{
 .selectEstadosPartida, .selectCidadesPartida, .selectEstadosChegada, .selectCidadesChegada, .selectEscolasDestino{
     /*padding: 8px 24px 8px 16px;*/
     border: none;
-    border-bottom: 2px solid #d2d2d2;
+    /*border-bottom: 2px solid #d2d2d2;*/
     outline: none;
 }
 .selectEstadosPartida, .selectCidadesPartida, .selectEstadosChegada, .selectCidadesChegada{
@@ -379,5 +391,13 @@ body{
     }
     .divConteinerTextFieldPercursos{
         width: 70%;
+    }
+
+    #formBusca{
+        padding: 20px 10px 20px 10px;
+    }
+
+    footer{
+        margin-top: 50px;
     }
 }
