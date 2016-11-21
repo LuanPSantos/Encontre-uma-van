@@ -360,6 +360,10 @@ body{
     text-align: justify;
 }
 
+.a-link{
+    color: white;
+    text-decoration: none;  
+}
 /* ============================================ */
 
 /* AJUSTES PARA OS SMARTPHONES*/
@@ -398,6 +402,6 @@ body{
     }
 
     footer{
-        margin-top: 50px;
+        /*margin-top: 50px;*/
     }
 }

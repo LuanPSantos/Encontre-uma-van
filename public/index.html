@@ -164,7 +164,7 @@
                     <!-- Fim conteiner resultados -->
 
                     <!-- Rodapé -->
-                    <footer class="mdl-mini-footer">
+                    <footer class="mdl-mini-footer" id="footer">
                         <div class="mdl-mini-footer__left-section">
                             <!-- Desenvolvedora -->
                             <div class="mdl-logo">EZ Solutions</div>
@@ -178,6 +178,23 @@
                             </ul>
                         </div>
                     </footer>
+
+                    <script>
+                        // set a posição correta do footer
+                        var realocarFooter = function(){
+                            var posicaoFooter = $("#footer").position().top + $("#footer").height() + 120;
+                            var alturaWindow = window.innerHeight;
+                            var marginTop = alturaWindow - posicaoFooter;
+
+                            if(marginTop > 0)
+                                $("#footer").css('margin-top',marginTop);
+
+                            console.log(marginTop);
+                        }
+
+                        realocarFooter();
+                        $(window).on("resize", realocarFooter);    
+                    </script>
                     <!-- Rodapé -->
                 </div>
             </main>            
