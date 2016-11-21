@@ -36,6 +36,7 @@ function logar(emailLogin, senhaLogin, chamarPerfil = false){
         if(chamarPerfil){            
             //Apos logar, vai para a pagina de perfil
             window.location.assign("perfil.html");
+            window.location.reload();
         }
     });
 
